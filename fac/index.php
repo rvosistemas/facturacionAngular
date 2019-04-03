@@ -33,7 +33,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link rel="stylesheet" href="dist/css/skins/skin-purple.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-black.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-black-light.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,6 +60,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="angular/app.js"></script>
     <script src="angular/controladores/dashboardCtrl.js"></script>
     <script src="angular/controladores/clientesCtrl.js"></script>
+    <script src="angular/controladores/automovilesCtrl.js"></script>
+    <script src="angular/controladores/computadoresCtrl.js"></script>
 
 
     <!-- servicios -->
@@ -64,12 +69,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="angular/servicios/mensajes_service.js"></script>
     <script src="angular/servicios/notificaciones_service.js"></script>
     <script src="angular/servicios/clientes_service.js"></script>
+    <script src="angular/servicios/automoviles_service.js"></script>
 
   </head>
  
 
 
-  <body class="hold-transition skin-purple sidebar-mini">
+  <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
       <!-- Main Header -->

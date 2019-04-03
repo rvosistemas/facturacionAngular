@@ -1,12 +1,13 @@
 var app = angular.module( 'facturacionApp',[ 
 		'ngRoute', 'jcs-autoValidate',
-
 		'facturacionApp.configuracion',
 		'facturacionApp.mensajes',
 		'facturacionApp.notificaciones',
 		'facturacionApp.clientes',
+		'facturacionApp.automoviles',
 		'facturacionApp.dashboardCrtl',
-		'facturacionApp.clientesCrtl'
+		'facturacionApp.clientesCrtl',
+		'facturacionApp.automovilesCrtl'
 		]);
 
 angular.module('jcs-autoValidate')
@@ -52,8 +53,10 @@ app.controller('mainCtrl', ['$scope', 'Configuracion','Mensajes', 'Notificacione
 		$scope.titulo    = titulo;
 		$scope.subtitulo = subtitulo;
 
-		$scope.mDashboard = "";
-		$scope.mClientes  = "";
+		$scope.mDashboard 		= "";
+		$scope.mClientes  		= "";
+		$scope.mAutomoviles  	= "";
+		$scope.mComputadores  	= "";
 
 		$scope[menu] = 'active';
 
@@ -77,6 +80,14 @@ app.config([ '$routeProvider', function($routeProvider){
 		.when('/clientes/:pag',{
 			templateUrl: 'clientes/clientes.html',
 			controller: 'clientesCtrl'
+		})
+		.when('/automoviles/:pag',{
+			templateUrl: 'automoviles/automoviles.html',
+			controller: 'automovilesCtrl'
+		})
+		.when('/computadores/:pag',{
+			templateUrl: 'computadores/computadores.html',
+			controller: 'computadoresCtrl'
 		})
 		.otherwise({
 			redirectTo: '/'

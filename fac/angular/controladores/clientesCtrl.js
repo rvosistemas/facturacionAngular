@@ -17,7 +17,7 @@ app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($s
 
 		Clientes.cargarPagina( pag ).then( function(){
 			$scope.clientes = Clientes;
-			console.log($scope.clientes);
+			//console.log($scope.clientes);
 		});
 
 	};
