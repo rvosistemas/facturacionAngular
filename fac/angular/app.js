@@ -1,5 +1,5 @@
 var app = angular.module( 'facturacionApp',[ 
-		'ngRoute', 'jcs-autoValidate',
+		'ngRoute', 'jcs-autoValidate', 'ngFileUpload',
 		'facturacionApp.configuracion',
 		'facturacionApp.mensajes',
 		'facturacionApp.notificaciones',
@@ -62,9 +62,17 @@ app.controller('mainCtrl', ['$scope', 'Configuracion','Mensajes', 'Notificacione
 
 	};
 
+	// ================================================
+	//   para carga de archivos
+	// ================================================
 
+   
 
 }]);
+
+// ================================================
+//   Directivas
+// ================================================
 
 
 // ================================================

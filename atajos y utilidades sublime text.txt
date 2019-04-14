@@ -1,0 +1,58 @@
+ALGUNOS ATAJOS:
+Vista de columnas: ALT + SHIFT + numero de columnas.
+Guardar cuando esté fuera de foco: "save_on_focus_lost": true
+Para aparecer la vista de archivos: ctrl + . (toggle_side_bar)
+Parar el cursor antes del renglón: ctrl
+Seleccionar la misma palabra: Ctrl-d
+Buscar y reemplazar: ctrl + h
+Para salir de las ventanas de sublime: ESC
+
+DESCARGA PACKAGE CONTROL: https://packagecontrol.io/
+
+PLUGIN: Emmet
+Atajos en el HTML con tabulador.
+Ejemplo: li*5 (tab)
+
+PLUGIN: AdvancedNewFile
+Para crear nuevos archivos
+ctrl+alt+n
+
+PLUGIN: AutoFileName
+Ayuda a autocompletar el nombre del archivo que estamos vinculando.
+
+PLUGIN: Alignment
+Alinea código HTML, CSS, Javascript entre otros.
+ctrl+alt+a
+
+PLUGIN: BracketHighlighter
+Muestra al desarrollador aperturas y cierres de llaves, etiquetas, paréntesis
+
+PLUGIN: HTML Nest Comments
+Permite comentar líneas de código HTML
+ctrl + shift + }
+
+PLUGIN: Comment-Snippets
+Permite crear comentarios básicos, de cabezote y pie de página para html, css, javascript.
+
+HTML: 
+comm-html-section
+comm-html
+
+CSS y JAVASCRIPT: 
+comm-section
+comm
+
+PLUGIN: Color Picker
+Permite sacar selector de color.
+Ctrl + shift + c
+
+PLUGIN: Console Wrap for JS
+Permite crear una consola conel valor de la variable que seleccionemos.
+Ctrl + shift + q
+
+PLUGIN: YUI Compressor
+Permite comprimir los códigos CSS y Javascript
+Ctrl + b
+
+CREAR SNIPPETS:
+Tools – Developers – New Snippets

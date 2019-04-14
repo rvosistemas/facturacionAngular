@@ -1,7 +1,7 @@
 var app = angular.module('facturacionApp.automoviles',[]);
 
+app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload){
 
-app.factory('Automoviles', ['$http', '$q', function($http, $q){
 
 	var self = {
 
@@ -20,38 +20,48 @@ app.factory('Automoviles', ['$http', '$q', function($http, $q){
 			var d = $q.defer();
 
 			console.log("usando guardado de automovil");
+			console.log(JSON.stringify(automovil));
 
-			$http.post('php/automoviles/post.automovilguardar.php' , automovil )
-				.success(function( respuesta ){
+			Upload.upload({ url: 'php/automoviles/post.automovil.php',file: automovil })
+			.progress(function(e) {
+			})
+			.then(function(data, status, headers, config) {
+    			// file is uploaded successfully
+    			console.log(data);
+    			d.resolve();
+  			}); 
 
-					// console.log( respuesta );
+
+			/*$http({ method:"POST", url:'php/automoviles/post.automovil.php', data: automovil })
+				.then(function( respuesta ){
+
+					console.log( respuesta );
 					self.cargarPagina( self.pag_actual  );
 					d.resolve();
 
-				});
+				});*/
 
 			return d.promise;
 
 		},
-
-
+		
 		cargarPagina: function( pag ){
 
 			var d = $q.defer();
 
-			$http.get('php/automoviles/get.automoviles.php?pag=' + pag )
-				.success(function( data ){
+			$http({ method:"GET", url:'php/automoviles/get.automoviles.php?pag=' + pag })
+				.then(function( data ){
 
-					//console.log(data);
+					console.log(data);
 
-					self.err           = data.err;
-					self.conteo        = data.conteo;
-					self.automoviles   = data.automoviles;
-					self.pag_actual    = data.pag_actual;
-					self.pag_siguiente = data.pag_siguiente;
-					self.pag_anterior  = data.pag_anterior;
-					self.total_paginas = data.total_paginas;
-					self.paginas       = data.paginas;
+					self.err           = data.data.err;
+					self.conteo        = data.data.conteo;
+					self.automoviles   = data.data.automoviles;
+					self.pag_actual    = data.data.pag_actual;
+					self.pag_siguiente = data.data.pag_siguiente;
+					self.pag_anterior  = data.data.pag_anterior;
+					self.total_paginas = data.data.total_paginas;
+					self.paginas       = data.data.paginas;
 
 					return d.resolve();
 				});

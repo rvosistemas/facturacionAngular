@@ -1,16 +1,17 @@
 var app = angular.module('facturacionApp.automovilesCrtl', []);
 
 // ================================================
-//   Controlador de clientes
+//   Controlador de automoviles
 // ================================================
-app.controller('automovilesCtrl', ['$scope','$routeParams', 'Automoviles', function($scope, $routeParams, Automoviles){
+app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', function($scope, $routeParams, Automoviles){
 
 	var pag = $routeParams.pag;
 
 
 	$scope.activar('mAutomoviles','','Automoviles','listado');
-	$scope.clientes   = {};
-	$scope.clienteSel = {};
+	$scope.automoviles   		= {};
+	$scope.automovilSel 		= {};
+	$scope.automovil 			= {};
 
 
 	$scope.moverA = function( pag ){
@@ -31,29 +32,28 @@ app.controller('automovilesCtrl', ['$scope','$routeParams', 'Automoviles', funct
 	// ================================================
 	$scope.mostrarModal = function( automovil ){
 
-		// console.log( cliente );
+		//console.log( automovil ); muestra todo al editar
 		angular.copy( automovil, $scope.automovilSel );
 		$("#modal_automovil").modal();
 
 	}
-
-
+	
 	// ================================================
 	//   Funcion para guardar
 	// ================================================
-	$scope.guardar = function( automovil, frmAutomovil){
+
+	$scope.guardarAuto = function( automovil, frmAutomovil ){
 
 		Automoviles.guardar( automovil ).then(function(){
 
 			// codigo cuando se actualizo
-			$("#modal_automovil").modal('hide');                                                                                                                                                                                 
-			$scope.automovilSel = {};
+			$("#modal_automovil").modal('hide');
+			$scope.clienteSel = {};
 
 			frmAutomovil.autoValidateFormOptions.resetForm();
 
 		});
-
-
+	
 	}
 
 

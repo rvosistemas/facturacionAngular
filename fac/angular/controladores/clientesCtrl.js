@@ -56,13 +56,4 @@ app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($s
 
 	}
 
-
-
-
-
-
-
-
-
-
 }]);

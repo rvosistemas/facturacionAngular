@@ -29,13 +29,32 @@
   <ul class="sidebar-menu">
     <li class="header">Opciones</li>
     <!-- Optionally, you can add icons to the links -->
-    <li ng-class="mDashboard"><a href="#/"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-    <li ng-class="mClientes"><a href="#/clientes/1"><i class="fa fa-link"></i> <span>Clientes</span></a></li>
+    <li ng-class="mDashboard"><a href="#!/">
+        <i class="fa fa-link"></i> 
+        <span>Dashboard</span></a>
+    </li>
+    <li ng-class="mClientes">
+        <a href="#!/clientes/1"><i class="fa fa-link"></i> 
+          <span>Clientes</span>
+        </a>
+    </li>
     <li class="treeview">
-      <a href=""><i class="fa fa-link"></i> <span>Productos</span> <i class="fa fa-angle-left pull-right"></i></a>
+      <a href="">
+          <i class="fa fa-link"></i> 
+          <span>Productos</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+      </a>
       <ul class="treeview-menu">
-        <li ng-class="mAutomoviles"><a href="#/automoviles/1"><i class="fa fa-link"></i> <span>Automoviles</span></a></li>
-        <li ng-class="mComputadores"><a href="#/computadores/1"><i class="fa fa-link"></i> <span>Computadores</span></a></li>
+          <li ng-class="mAutomoviles">
+              <a href="#!/automoviles/1"><i class="fa fa-link"></i> 
+                <span>Automoviles</span>
+              </a>
+          </li>
+          <li ng-class="mComputadores">
+            <a href="#!/computadores/1"><i class="fa fa-link"></i> 
+              <span>Computadores</span>
+            </a>
+          </li>
       </ul>
     </li>
   </ul><!-- /.sidebar-menu -->

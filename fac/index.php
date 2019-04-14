@@ -54,6 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="angular/lib/angular.min.js"></script>
     <script src="angular/lib/angular-route.min.js"></script>
     <script src="angular/lib/jcs-auto-validate.min.js"></script>
+    <script src="angular/lib/ng-file-upload.min.js"></script>
 
 
     <!-- Controladores -->

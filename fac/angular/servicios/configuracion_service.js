@@ -10,15 +10,15 @@ app.factory('Configuracion', ['$http', '$q', function($http, $q){
 
 			var d = $q.defer();
 
-			$http.get('configuracion.json')
-				.success(function(data){
+			$http({ method: "GET", url: 'configuracion.json'})
+				.then(function(data){
 
-					self.config = data;
+					self.config = data.data;
 					d.resolve();
 
 
-				})
-				.error(function(){
+				},
+				function (error){
 
 					d.reject();
 					console.error("No se pudo cargar el archivo de configuración");
