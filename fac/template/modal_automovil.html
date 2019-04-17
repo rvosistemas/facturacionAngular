@@ -2,17 +2,25 @@
   <div class="modal-dialog">
     <div class="modal-content">
 
-
+      <!--==================================
+      =            modal header            =
+      ===================================-->
+      
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <h4 class="modal-title">Automóvil: </h4>
       </div>
-
+      
+      <!--====  End of modal header  ====-->
 
       <form name="frmAutomovil"
             ng-submit="guardarAuto( automovilSel, frmAutomovil )"
             novalidate="novalidate" enctype="multipart/form-data">
 
+        <!--================================
+        =            modal body            =
+        =================================-->
+            
         <div class="modal-body">
 
             <div class="form-group">
@@ -29,7 +37,7 @@
             </div>
 
             <div class="form-group">
-            <!-- Single Image with validations -->        
+            <!-- Una sola imagen con validacion -->        
               <label>Imagen</label>
                 <input type = "file" ngf-select ng-model="automovilSel.file" name="file" 
                         ngf-pattern="'image/*'"
@@ -45,17 +53,21 @@
                   ng-model="automovilSel.descripcion" required></textarea>
             </div>
 
-        </div>
-
-
-
+        </div>    
+            
+        <!--====  End of modal body  ====-->
+                
+        <!--==================================
+        =            modal fotter            =
+        ===================================-->
+        
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
         </div>
+        
+        <!--====  End of modal fotter  ====-->       
 
       </form>
-
-
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

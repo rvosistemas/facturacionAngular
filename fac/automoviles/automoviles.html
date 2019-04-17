@@ -1,14 +1,23 @@
+<!--==============================
+=            breadcum            =
+===============================-->
+
 <ol class="breadcrumb animated fadeIn fast">
 	<li><a href="#!/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 	<li class="active">Automoviles</li>
 </ol> 
 
+<!--====  End of breadcum  ====-->
+
 
 <div class="row">
 	
-
 	<div class="col-md-12">
 	  <div class="box">
+
+	    <!--================================
+	    =            box header            =
+	    =================================-->
 	    
 	    <div class="box-header with-border">
 	      <h3 class="box-title">Automoviles</h3>
@@ -21,7 +30,13 @@
 	        </div>
 
 	    </div>
-	    <!-- /.box-header -->
+	    
+	    <!--====  End of box header  ====-->
+	    
+	    
+	    <!--==============================
+	    =            box body            =
+	    ===============================-->
 	    
 	    <div class="box-body">
 	      
@@ -33,18 +48,20 @@
 					<th>Precio</th>
 					<th>Foto</th>
 					<th>Descripcion</th>
-					<th>Editar</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="automovil in automovil.automovil">
-					<td>{{ automovil.id }}</td>
+				<tr ng-repeat="automovil in automoviles.automoviles">
+					<td>{{ automovil.id-10 }}</td>
 					<td>{{ automovil.marca }}</td>
 					<td>{{ automovil.precio }}</td>
-					<td>{{ automovil.foto }}</td>
+					<!-- <td>{{ automovil.foto }}</td> -->
+					<td> <img class="logo" src="img/bd/autos/{{ automovil.foto }} "> </td>
 					<td>{{ automovil.descripcion }}</td>
 					<td>
-						<a ng-click="mostrarModal( automovil )" class="btn btn-warning">Editar<i class="fa fa-edit"></i></a>
+						<a ng-click="mostrarModal( automovil )" class="btn btn-warning btn-xs">Editar <i class="fa fa-edit"></i></a>
+						<a ng-click="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Borrar</a>
 					</td>
 				</tr>
 			</tbody>
@@ -54,7 +71,13 @@
 	
 		</div>
 
-		<div class="box-footer clearfix">
+	    <!--====  End of box body  ====-->
+	    
+	    <!--================================
+	    =            box footer            =
+	    =================================-->
+	    
+	    <div class="box-footer clearfix">
           <ul class="pagination pagination-sm no-margin pull-right">
             <li><a ng-click="moverA(1)">«</a></li>
 
@@ -64,24 +87,17 @@
 				}">
 				<a ng-click="moverA(pag)">{{ pag }}</a>
 			</li>
-<!-- 
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
- -->
 
             <li><a ng-click="moverA( automoviles.total_paginas )" >»</a></li>
           </ul>
         </div>
-
-
-
+	    
+	    <!--====  End of box footer  ====-->
+	    
 		</div>
 	</div>
 
 </div>
-
-
 
 
 <div ng-include="'template/modal_automovil.html'"></div>

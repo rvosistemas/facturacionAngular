@@ -3,7 +3,12 @@ var app = angular.module('facturacionApp.automovilesCrtl', []);
 // ================================================
 //   Controlador de automoviles
 // ================================================
+
 app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', function($scope, $routeParams, Automoviles){
+
+	// ================================================
+	//   Varibles
+	// ================================================
 
 	var pag = $routeParams.pag;
 
@@ -11,25 +16,26 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 	$scope.activar('mAutomoviles','','Automoviles','listado');
 	$scope.automoviles   		= {};
 	$scope.automovilSel 		= {};
-	$scope.automovil 			= {};
 
+	// ================================================
+	//   Moverse entre el paginado
+	// ================================================
 
 	$scope.moverA = function( pag ){
 
 		Automoviles.cargarPagina( pag ).then( function(){
-			$scope.clientes = Automoviles;
-			//console.log($scope.clientes);
+			$scope.automoviles = Automoviles;
+			console.log($scope.automoviles);
 		});
 
 	};
 
-
 	$scope.moverA(pag);
-
 
 	// ================================================
 	//   Mostrar modal de edicion
 	// ================================================
+
 	$scope.mostrarModal = function( automovil ){
 
 		//console.log( automovil ); muestra todo al editar
@@ -46,7 +52,6 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 
 		Automoviles.guardar( automovil ).then(function(){
 
-			// codigo cuando se actualizo
 			$("#modal_automovil").modal('hide');
 			$scope.clienteSel = {};
 
@@ -55,7 +60,5 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 		});
 	
 	}
-
-
 
 }]);

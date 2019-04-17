@@ -15,6 +15,10 @@ app.factory('Clientes', ['$http', '$q', function($http, $q){
 		'total_paginas' : 1,
 		'paginas'	    : [],
 
+		// ================================================
+		//   SERVICIO PARA GUARDAR
+		// ================================================
+
 		guardar: function( cliente ){
 
 			var d = $q.defer();
@@ -34,6 +38,10 @@ app.factory('Clientes', ['$http', '$q', function($http, $q){
 
 		},
 
+
+		// ================================================
+		//   SERVICIO PARA CARGAR PAGINA CON DATOS BD
+		// ================================================
 
 		cargarPagina: function( pag ){
 
@@ -55,8 +63,6 @@ app.factory('Clientes', ['$http', '$q', function($http, $q){
 
 					return d.resolve();
 				});
-
-
 
 			return d.promise;
 		}

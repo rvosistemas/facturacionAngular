@@ -16,8 +16,6 @@ app.factory('Notificaciones', ['$http', '$q', function($http, $q){
 
 	};
 
-
 	return self;
-
 
 }]);

@@ -27,7 +27,6 @@ app.factory('Mensajes', ['$http', '$q', function($http, $q){
 
 	};
 
-
 	return self;
 
 }])

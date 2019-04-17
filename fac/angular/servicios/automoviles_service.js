@@ -15,6 +15,10 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 		'total_paginas' : 1,
 		'paginas'	    : [],
 
+		// ================================================
+		//   SERVICIO PARA GUARDAR
+		// ================================================
+
 		guardar: function( automovil ){
 
 			var d = $q.defer();
@@ -26,24 +30,18 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 			.progress(function(e) {
 			})
 			.then(function(data, status, headers, config) {
-    			// file is uploaded successfully
+    			// si el archivo se subio satisfactoriamente
     			console.log(data);
     			d.resolve();
   			}); 
 
-
-			/*$http({ method:"POST", url:'php/automoviles/post.automovil.php', data: automovil })
-				.then(function( respuesta ){
-
-					console.log( respuesta );
-					self.cargarPagina( self.pag_actual  );
-					d.resolve();
-
-				});*/
-
 			return d.promise;
 
 		},
+
+		// ================================================
+		//   SERVICIO PARA CARGAR PAGINA CON DATOS BD
+		// ================================================
 		
 		cargarPagina: function( pag ){
 
@@ -64,18 +62,14 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 					self.paginas       = data.data.paginas;
 
 					return d.resolve();
+					
 				});
-
-
 
 			return d.promise;
 		}
 
-
 	};
 
-
 	return self;
-
 
 }]);

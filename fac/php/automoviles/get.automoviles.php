@@ -8,7 +8,6 @@ if( isset( $_GET["pag"] ) ){
 	$pag = 1;
 }
 
-
 $respuesta = Database::get_todo_paginado( 'automoviles', $pag );
 
 //echo "respuesta del servidor en get clientes";

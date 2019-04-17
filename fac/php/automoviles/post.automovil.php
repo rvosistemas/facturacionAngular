@@ -2,44 +2,22 @@
 // Incluir el archivo de base de datos
 include_once("../clases/class.Database.php");
 
-print_r("lo que sale en post");
-print_r($_POST);
+//print_r("lo que sale en post");
+//print_r($_POST);
 //print_r("lo que sale en files");
 //print_r($_FILES);
 
+//$postdata = file_get_contents("php://input");
+
+//$request = json_decode($postdata);
+//$request = (array) $request;
 
 
-$postdata = file_get_contents("php://input");
+if( isset( $_POST['file']['id'] )  ){
 
-$request = json_decode($postdata);
-$request = (array) $request;
-
-
-if( isset( $request['id'] )  ){  // ACTUALIZAR
-
-	$sql = "UPDATE automoviles 
-				SET
-					marca    	= '". $request['marca'] ."',
-					precio    	= '". $request['precio'] ."',
-					foto      	= '". $request['foto'] ."',
-					tipo 		= '". $request['tipo'] ."',
-					descripcion = '". $request['descripcion'] ."'
-			WHERE id=" . $request['id'];
-
-	$hecho = Database::ejecutar_idu( $sql );
-
-	
-	if( is_numeric($hecho) OR $hecho === true ){
-		$respuesta = array( 'err'=>false, 'Mensaje'=>'Registro actualizado' );
-	}else{
-		$respuesta = array( 'err'=>true, 'Mensaje'=>$hecho );
-	}
-
-
-
-}else{  // INSERT
-
-	//print_r($request);
+	/* //////------------------------------//////
+					ACTUALIZAR
+	////////------------------------------/////*/
 
 	// Verificamos si el tipo de archivo es un tipo de imagen permitido.
     // y que el tamaño del archivo no exceda los 64MB
@@ -56,29 +34,101 @@ if( isset( $request['id'] )  ){  // ACTUALIZAR
     {
 
     	// directorio donde se guardan las imagenes
-    	$uploads_dir = 'C:/xampp/htdocs/udemy/ANGULAR JS/facturacion login/fac/img/bd'; 
+    	$uploads_dir = 'C:/xampp/htdocs/udemy/ANGULAR JS/facturacion login/fac/img/bd/autos/'; 
     	
 
 	    // Archivo temporal
 	    $imagen_temporal = (string) $_FILES['file']['name']['file'];
 	    $tmp_nombre = (string) $_FILES['file']['tmp_name']['file'];
-
-	    //datos del post
-	    $marca = (string) $_POST['file']['marca'];
-	    $precio = (string) $_POST['file']['precio'] ;
-	    $descripcion = (string) $_POST['file']['descripcion'];
-
 	    // datos del archivo
 	    $tipo = (string) $_FILES['file']['type']['file'];
 	    $aux = (string) $_FILES['file']['name']['file'];
 	    $nombre = basename($aux);
-	    
+
+	    //datos del post
+	    $id = (int) $_POST['file']['id'];
+	    $marca = (string) $_POST['file']['marca'];
+	    $precio = (string) $_POST['file']['precio'] ;
+	    $descripcion = (string) $_POST['file']['descripcion'];
 
 	    // lo que estaba aqui se corto y paso al final
 	    
+	    //Con esto pasamos la imagen a un directorio dentro del servidor
 	    move_uploaded_file($tmp_nombre, "$uploads_dir/$nombre");
-	    // Insertamos en la base de datos.
 
+	    // Insertamos en la base de datos.
+    	$sql = "UPDATE automoviles 
+				SET
+					marca    	= '". $marca ."',
+					precio   	= '". $precio ."',
+					foto    	= '". $nombre ."',
+					tipo 		= '". $tipo ."',
+					descripcion = '". $descripcion ."' 
+			WHERE id=" . $id;
+
+		$hecho = Database::ejecutar_idu( $sql );
+
+
+		if( is_numeric($hecho) OR $hecho === true ){
+
+			$respuesta = array( 'err'=>false, 'Mensaje'=>'Registro ACTUALIZADO' );
+
+		}else{
+
+			$respuesta = array( 'err'=>true, 'Mensaje'=>$hecho );
+
+		}
+
+        echo "El archivo imagen ha sido copiado exitosamente.";
+        
+    }else{
+
+        echo "Formato de archivo imagen no permitido o excede el tamaño límite de $limite_kb Kbytes.";
+        
+    }
+
+}else{  
+
+	/* //////------------------------------//////
+					INSERTAR
+	////////------------------------------/////*/
+
+	// Verificamos si el tipo de archivo es un tipo de imagen permitido.
+    // y que el tamaño del archivo no exceda los 64MB
+    $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+    $limite_kb = 65536;
+
+    // Comprobamos si ha ocurrido un error.
+	if (!isset($_FILES['file']) || $_FILES["file"]["error"]["file"] > 0)
+	{
+    	echo "Ha ocurrido un error.";
+	}
+
+    if (in_array($_FILES['file']['type']['file'], $permitidos) && $_FILES['file']['size']['file'] <= $limite_kb * 1024)
+    {
+
+    	// directorio donde se guardan las imagenes
+    	$uploads_dir = 'C:/xampp/htdocs/udemy/ANGULAR JS/facturacion login/fac/img/bd/autos/';   	
+
+	    // Archivo temporal
+	    $imagen_temporal = (string) $_FILES['file']['name']['file'];
+	    $tmp_nombre = (string) $_FILES['file']['tmp_name']['file'];
+	    // datos del archivo
+	    $tipo = (string) $_FILES['file']['type']['file'];
+	    $aux = (string) $_FILES['file']['name']['file'];
+	    $nombre = basename($aux);
+
+	    //datos del post
+	    $marca = (string) $_POST['file']['marca'];
+	    $precio = (string) $_POST['file']['precio'] ;
+	    $descripcion = (string) $_POST['file']['descripcion'];	    
+
+	    // lo que estaba aqui se corto y paso al final
+	    
+	    //Con esto pasamos la imagen a un directorio dentro del servidor
+	    move_uploaded_file($tmp_nombre, "$uploads_dir/$nombre");
+
+	    // Insertamos en la base de datos.
     	$sql = "INSERT INTO automoviles( marca, precio, foto, tipo, descripcion ) 
     		VALUES ('". $marca . "',
 					'". $precio . "',
@@ -91,7 +141,7 @@ if( isset( $request['id'] )  ){  // ACTUALIZAR
 
 		if( is_numeric($hecho) OR $hecho === true ){
 
-			$respuesta = array( 'err'=>false, 'Mensaje'=>'Registro insertado' );
+			$respuesta = array( 'err'=>false, 'Mensaje'=>'Registro INSERTADO' );
 
 		}else{
 

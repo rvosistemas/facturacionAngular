@@ -24,6 +24,9 @@ angular.module('jcs-autoValidate')
 
 app.controller('mainCtrl', ['$scope', 'Configuracion','Mensajes', 'Notificaciones', function($scope, Configuracion,Mensajes, Notificaciones){
 	
+	// ================================================
+	//   variables
+	// ================================================
 	$scope.config = {};
 	$scope.mensajes = Mensajes.mensajes;
 	$scope.notificaciones = Notificaciones.notificaciones;
@@ -31,15 +34,11 @@ app.controller('mainCtrl', ['$scope', 'Configuracion','Mensajes', 'Notificacione
 	$scope.titulo    = "";
 	$scope.subtitulo = "";
 
-
-
 	$scope.usuario = {
 		nombre:"Richard Vivas"
 	}
 
-
-
-
+	// cargar servicio de configuracion
 	Configuracion.cargar().then( function(){
 		$scope.config = Configuracion.config;
 	});
@@ -60,13 +59,7 @@ app.controller('mainCtrl', ['$scope', 'Configuracion','Mensajes', 'Notificacione
 
 		$scope[menu] = 'active';
 
-	};
-
-	// ================================================
-	//   para carga de archivos
-	// ================================================
-
-   
+	};  
 
 }]);
 

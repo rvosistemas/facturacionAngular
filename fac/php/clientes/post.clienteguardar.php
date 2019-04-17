@@ -8,7 +8,12 @@ $request = json_decode($postdata);
 $request = (array) $request;
 
 
-if( isset( $request['id'] )  ){  // ACTUALIZAR
+
+if( isset( $request['id'] )  ){
+	
+	/* //////------------------------------//////
+					ACTUALIZAR
+	////////------------------------------///// */ 
 
 	$sql = "UPDATE clientes 
 				SET
@@ -30,11 +35,13 @@ if( isset( $request['id'] )  ){  // ACTUALIZAR
 		$respuesta = array( 'err'=>true, 'Mensaje'=>$hecho );
 	}
 
+}else{  
 
+	/* //////------------------------------//////
+					INSERTAR
+	////////------------------------------/////*/
 
-}else{  // INSERT
-
-	$sql = "INSERT INTO clientes(nombre, correo, zip, telefono1, telefono2, pais, direccion) VALUES ('". $request['nombre'] . "',
+	$sql = "INSERT INTO clientes(nombre, correo, zip, telefono1, telefono2, pais, direccion) VALUES (		 '". $request['nombre'] . "',
 				'". $request['correo'] . "',
 				'". $request['zip'] . "',
 				'". $request['telefono1'] . "',
@@ -53,10 +60,6 @@ if( isset( $request['id'] )  ){  // ACTUALIZAR
 
 }
 
-
-
 echo json_encode( $respuesta );
-
-
 
 ?>

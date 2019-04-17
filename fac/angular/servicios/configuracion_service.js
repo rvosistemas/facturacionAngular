@@ -6,6 +6,7 @@ app.factory('Configuracion', ['$http', '$q', function($http, $q){
 	var self = {
 
 		config:{},
+		
 		cargar: function(){
 
 			var d = $q.defer();
@@ -28,10 +29,7 @@ app.factory('Configuracion', ['$http', '$q', function($http, $q){
 			return d.promise;
 		}
 
-
-
 	};
-
 
 	return self;
 

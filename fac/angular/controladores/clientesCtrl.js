@@ -3,7 +3,12 @@ var app = angular.module('facturacionApp.clientesCrtl', []);
 // ================================================
 //   Controlador de clientes
 // ================================================
+
 app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($scope, $routeParams, Clientes){
+
+	// ================================================
+	//   Variables
+	// ================================================
 
 	var pag = $routeParams.pag;
 
@@ -12,6 +17,9 @@ app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($s
 	$scope.clientes   = {};
 	$scope.clienteSel = {};
 
+	// ================================================
+	//   Moverse entre el paginado
+	// ================================================
 
 	$scope.moverA = function( pag ){
 
@@ -22,13 +30,12 @@ app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($s
 
 	};
 
-
 	$scope.moverA(pag);
-
 
 	// ================================================
 	//   Mostrar modal de edicion
 	// ================================================
+
 	$scope.mostrarModal = function( cliente ){
 
 		// console.log( cliente );
@@ -37,22 +44,20 @@ app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($s
 
 	}
 
-
 	// ================================================
 	//   Funcion para guardar
 	// ================================================
+
 	$scope.guardar = function( cliente, frmCliente){
 
 		Clientes.guardar( cliente ).then(function(){
 
-			// codigo cuando se actualizo
 			$("#modal_cliente").modal('hide');
 			$scope.clienteSel = {};
 
 			frmCliente.autoValidateFormOptions.resetForm();
 
 		});
-
 
 	}
 

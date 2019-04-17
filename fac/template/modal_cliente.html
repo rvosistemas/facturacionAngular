@@ -2,17 +2,25 @@
   <div class="modal-dialog">
     <div class="modal-content">
 
-
+      <!--==================================
+      =            modal header            =
+      ===================================-->
+      
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <h4 class="modal-title">Cliente: </h4>
       </div>
-
+      
+      <!--====  End of modal header  ====-->
 
       <form name="frmCliente"
             ng-submit="guardar( clienteSel, frmCliente )"
             novalidate="novalidate">
 
+        <!--================================
+        =            modal body            =
+        =================================-->
+            
         <div class="modal-body">
 
           <div class="form-group">
@@ -64,19 +72,22 @@
                 ng-model="clienteSel.zip">
           </div>
 
+        </div>    
+            
+        <!--====  End of modal body  ====-->
+                
 
-
-        </div>
-
-
-
+        <!--==================================
+        =            modal footer            =
+        ===================================-->
+        
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
         </div>
-
+        
+        <!--====  End of modal footer  ====-->
+        
       </form>
-
-
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
