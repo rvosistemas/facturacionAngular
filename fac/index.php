@@ -30,6 +30,7 @@ if( !isset( $_SESSION['user'] ) ){
     <!-- Ionicons -->
     <link rel="stylesheet" href="dist/ionicons/css/ionicons.min.css">
     <!-- Sweet Alert 2 -->
+    <script src="dist/sweet-alert2/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="dist/sweet-alert2/dist/sweetalert2.all.min.js">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">

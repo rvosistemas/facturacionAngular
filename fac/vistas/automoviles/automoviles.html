@@ -53,7 +53,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="automovil in automoviles.automoviles" ng-if='automovil.activo==1'>
-					<td>{{$index}}</td>
+					<td>{{ $index }}</td>
 					<td>{{ automovil.marca }}</td>
 					<td>{{ automovil.precio | currency }}</td>
 					<!-- <td>{{ automovil.foto }}</td> -->

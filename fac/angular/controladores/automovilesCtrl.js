@@ -7,15 +7,15 @@ var app = angular.module('facturacionApp.automovilesCrtl', []);
 app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', function($scope, $routeParams, Automoviles){
 
 	// ================================================
-	//   Varibles
+	//   Variables
 	// ================================================
 
 	var pag = $routeParams.pag;
 
 	$scope.activar('mAutomoviles','','Automoviles','listado');
 
-	$scope.automoviles   		= {};
-	$scope.automovilSel 		= {};
+	$scope.automoviles   	= {};
+	$scope.automovilSel 	= {};
 
 	// ================================================
 	//   Moverse entre el paginado
@@ -23,9 +23,14 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 
 	$scope.moverA = function( pag ){
 
+		swal.showLoading()
+
 		Automoviles.cargarPagina( pag ).then( function(){
+
+			swal.close();
 			$scope.automoviles = Automoviles;
 			console.log($scope.automoviles);
+
 		});
 
 	};
@@ -33,7 +38,7 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 	$scope.moverA(pag);
 
 	// ================================================
-	//   Mostrar modal de edicion
+	//   Mostrar modal de edicion y guardado
 	// ================================================
 
 	$scope.mostrarModal = function( automovil ){
@@ -45,19 +50,52 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 	}
 	
 	// ================================================
-	//   Funcion para guardar
+	//   Funcion para guardar y editar
 	// ================================================
 
 	$scope.guardarAuto = function( automovil, frmAutomovil ){
 
-		Automoviles.guardar( automovil ).then(function(){
+		Swal.fire({
 
-			$("#modal_automovil").modal('hide');
-			$scope.automovilSel = {};
+            title: 'Esta seguro de guardar los datos del Automovil!',
+            text: "Igualmente puede editar los datos en el futuro",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'SI, Guardar!'
 
-			frmAutomovil.autoValidateFormOptions.resetForm();
+        }).then((result) => {
+        	
+            if (result.value) {
 
-		});
+        		Automoviles.guardar( automovil )
+	        		.then(function(){
+
+						$("#modal_automovil").modal('hide');
+						$scope.automovilSel = {};
+						frmAutomovil.autoValidateFormOptions.resetForm();
+
+						Swal.fire({
+
+			  				position: 'top-end',
+			  				type: 'success',
+			  				title: 'Datos guardados correctamente',
+			  				showConfirmButton: false,
+			  				timer: 1500
+
+						})
+
+					})
+					.catch(function(err){
+
+						console.log("error al guardar datos del automovil: "+err);
+
+					})
+				;
+
+            }
+        })
 	
 	}
 
@@ -66,14 +104,48 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 	// ================================================
 
 	$scope.eliminar = function( automovil ){
-		//console.log("id del auto seleccionado: "+automovil.id);
-		Automoviles.eliminar( automovil ).then(function(){
 
-			$scope.automovilSel = {};
+		Swal.fire({
 
-			//frmAutomovil.autoValidateFormOptions.resetForm();
+            title: 'Esta seguro de eliminar los datos del Automovil!',
+            text: "Se eliminaran todos los datos del automovil",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'SI, Eliminar!'
 
-		});
+        }).then((result) => {
+
+            if (result.value) {
+
+				Automoviles.eliminar( automovil )
+					.then(function(){
+
+						$scope.automovilSel = {};
+
+						Swal.fire({
+
+						  	position: 'top-end',
+						  	type: 'success',
+						  	title: 'Datos eliminados correctamente',
+						  	showConfirmButton: false,
+						  	timer: 1500
+
+						})
+
+					})
+					.catch(function(err){
+
+						console.log("error al eliminar datos del automovil: "+err);
+
+					})
+				;
+
+            }
+
+        })
+
 	}
 
 }]);

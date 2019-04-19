@@ -23,7 +23,11 @@ app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($s
 
 	$scope.moverA = function( pag ){
 
+		swal.showLoading()
+
 		Clientes.cargarPagina( pag ).then( function(){
+
+			swal.close();
 			$scope.clientes = Clientes;
 			//console.log($scope.clientes);
 		});
