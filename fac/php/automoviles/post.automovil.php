@@ -7,12 +7,6 @@ include_once("../clases/class.Database.php");
 //print_r("lo que sale en files");
 //print_r($_FILES);
 
-//$postdata = file_get_contents("php://input");
-
-//$request = json_decode($postdata);
-//$request = (array) $request;
-
-
 if( isset( $_POST['file']['id'] )  ){
 
 	/* //////------------------------------//////

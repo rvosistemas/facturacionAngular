@@ -52,16 +52,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="automovil in automoviles.automoviles">
-					<td>{{ automovil.id-10 }}</td>
+				<tr ng-repeat="automovil in automoviles.automoviles" ng-if='automovil.activo==1'>
+					<td>{{$index}}</td>
 					<td>{{ automovil.marca }}</td>
-					<td>{{ automovil.precio }}</td>
+					<td>{{ automovil.precio | currency }}</td>
 					<!-- <td>{{ automovil.foto }}</td> -->
 					<td> <img class="logo" src="img/bd/autos/{{ automovil.foto }} "> </td>
 					<td>{{ automovil.descripcion }}</td>
 					<td>
 						<a ng-click="mostrarModal( automovil )" class="btn btn-warning btn-xs">Editar <i class="fa fa-edit"></i></a>
-						<a ng-click="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Borrar</a>
+						<a ng-click="eliminar( automovil )" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Borrar</a>
 					</td>
 				</tr>
 			</tbody>

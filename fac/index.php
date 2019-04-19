@@ -29,6 +29,8 @@ if( !isset( $_SESSION['user'] ) ){
     <link rel="stylesheet" href="dist/fontawesome/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="dist/ionicons/css/ionicons.min.css">
+    <!-- Sweet Alert 2 -->
+    <link rel="stylesheet" href="dist/sweet-alert2/dist/sweetalert2.all.min.js">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. se ha escogido la skin azul para empezar esta pagina. Sin embargo, se pude escoger otra skin. pero se tiene que aplicar la skin en la clase de la etiqueta body para que haga efecto -->
@@ -48,6 +50,7 @@ if( !isset( $_SESSION['user'] ) ){
 
     <!-- Controladores -->
     <script src="angular/app.js"></script>
+    <script src="angular/config.js"></script>
     <script src="angular/controladores/dashboardCtrl.js"></script>
     <script src="angular/controladores/clientesCtrl.js"></script>
     <script src="angular/controladores/automovilesCtrl.js"></script>

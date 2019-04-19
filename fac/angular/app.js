@@ -67,33 +67,24 @@ app.controller('mainCtrl', ['$scope', 'Configuracion','Mensajes', 'Notificacione
 //   Directivas
 // ================================================
 
+// se modifica una directiva parecida a un filtro para que en hmtl se pueda mostrar como dinero algun numero dado
+// por ejemplo 2000000 pasa a ser $2,000,000.00 
+app.directive('format', ['$filter', function ($filter) {
+    return {
+        require: '?ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            if (!ctrl) return;
 
-// ================================================
-//   Rutas
-// ================================================
-app.config([ '$routeProvider', function($routeProvider){
+            ctrl.$formatters.unshift(function (a) {
+                return $filter(attrs.format)(ctrl.$modelValue)
+            });
 
-	$routeProvider
-		.when('/',{
-			templateUrl: 'dashboard/dashboard.html',
-			controller: 'dashboardCtrl'
-		})
-		.when('/clientes/:pag',{
-			templateUrl: 'clientes/clientes.html',
-			controller: 'clientesCtrl'
-		})
-		.when('/automoviles/:pag',{
-			templateUrl: 'automoviles/automoviles.html',
-			controller: 'automovilesCtrl'
-		})
-		.when('/computadores/:pag',{
-			templateUrl: 'computadores/computadores.html',
-			controller: 'computadoresCtrl'
-		})
-		.otherwise({
-			redirectTo: '/'
-		})
-
+            elem.bind('blur', function(event) {
+                var plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
+                elem.val($filter(attrs.format)(plainNumber));
+            });
+        }
+    };
 }]);
 
 

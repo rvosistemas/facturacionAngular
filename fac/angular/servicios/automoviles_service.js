@@ -32,8 +32,33 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 			.then(function(data, status, headers, config) {
     			// si el archivo se subio satisfactoriamente
     			console.log(data);
+    			self.cargarPagina( self.pag_actual  );
     			d.resolve();
   			}); 
+
+			return d.promise;
+
+		},
+
+		// ================================================
+		//   SERVICIO PARA ELIMINAR
+		// ================================================
+
+		eliminar: function( automovil ){
+
+			var d = $q.defer();
+
+			console.log("usando eliminar de automovil");
+			console.log(automovil);
+
+			$http({ method:"POST", url: 'php/automoviles/delete.automovil.php' , data: automovil })
+				.then(function( respuesta ){
+
+					console.log( respuesta );
+					self.cargarPagina( self.pag_actual  );
+					d.resolve();
+
+				});
 
 			return d.promise;
 
@@ -50,7 +75,7 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 			$http({ method:"GET", url:'php/automoviles/get.automoviles.php?pag=' + pag })
 				.then(function( data ){
 
-					console.log(data);
+					//console.log(data);
 
 					self.err           = data.data.err;
 					self.conteo        = data.data.conteo;

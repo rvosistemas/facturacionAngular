@@ -12,8 +12,8 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 
 	var pag = $routeParams.pag;
 
-
 	$scope.activar('mAutomoviles','','Automoviles','listado');
+
 	$scope.automoviles   		= {};
 	$scope.automovilSel 		= {};
 
@@ -53,12 +53,27 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 		Automoviles.guardar( automovil ).then(function(){
 
 			$("#modal_automovil").modal('hide');
-			$scope.clienteSel = {};
+			$scope.automovilSel = {};
 
 			frmAutomovil.autoValidateFormOptions.resetForm();
 
 		});
 	
+	}
+
+	// ================================================
+	//   Funcion para eliminar
+	// ================================================
+
+	$scope.eliminar = function( automovil ){
+		//console.log("id del auto seleccionado: "+automovil.id);
+		Automoviles.eliminar( automovil ).then(function(){
+
+			$scope.automovilSel = {};
+
+			//frmAutomovil.autoValidateFormOptions.resetForm();
+
+		});
 	}
 
 }]);
