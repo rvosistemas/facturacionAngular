@@ -15,7 +15,7 @@ if( isset( $request['id'] )  ){
 					ELIMINAR (en este caso no se elimina el registro si no que cambia el estado)
 	////////------------------------------///// */ 
 
-	$activo = 0;
+	$activo = 0; // activo 1 si aparecen los datos en la aplicacion con cero no.
 
 	$sql = "UPDATE automoviles 
 				SET

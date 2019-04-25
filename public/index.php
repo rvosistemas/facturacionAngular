@@ -49,7 +49,7 @@
 
       <div class="login-box-body">
 
-        <p class="login-box-msg">Ingrese su usurio</p>
+        <p class="login-box-msg">Ingrese su usuario</p>
 
         <form name="forma" ng-submit=" ingresar( datos ) ">
 
