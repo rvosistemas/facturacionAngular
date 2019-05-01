@@ -49,18 +49,24 @@ if( !isset( $_SESSION['user'] ) ){
     <script src="angular/lib/jcs-auto-validate.min.js"></script>
     <script src="angular/lib/ng-file-upload.min.js"></script>
 
-    <!-- Controladores -->
+    <!--==========================
+    =       CONTROLADORES        =
+    ===========================-->
     <script src="angular/app.js"></script>
     <script src="angular/config.js"></script>
     <script src="angular/controladores/dashboardCtrl.js"></script>
+    <script src="angular/controladores/categoriasCtrl.js"></script>
     <script src="angular/controladores/clientesCtrl.js"></script>
     <script src="angular/controladores/automovilesCtrl.js"></script>
     <script src="angular/controladores/computadoresCtrl.js"></script>
 
-    <!-- servicios -->
+    <!--==========================
+    =          SERVICIOS         =
+    ===========================-->
     <script src="angular/servicios/configuracion_service.js"></script>
     <script src="angular/servicios/mensajes_service.js"></script>
     <script src="angular/servicios/notificaciones_service.js"></script>
+    <script src="angular/servicios/categorias_service.js"></script>
     <script src="angular/servicios/clientes_service.js"></script>
     <script src="angular/servicios/automoviles_service.js"></script>
 

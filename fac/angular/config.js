@@ -8,6 +8,10 @@ app.config( function($routeProvider){
 			templateUrl: 'vistas/dashboard/dashboard.html',
 			controller: 'dashboardCtrl'
 		})
+		.when('/categorias',{
+			templateUrl: 'vistas/categorias/categorias.html',
+			controller: 'categoriasCtrl'
+		})
 		.when('/clientes/:pag',{
 			templateUrl: 'vistas/clientes/clientes.html',
 			controller: 'clientesCtrl'

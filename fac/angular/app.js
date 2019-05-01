@@ -1,11 +1,15 @@
 var app = angular.module( 'facturacionApp',[ 
-		'ngRoute', 'jcs-autoValidate', 'ngFileUpload',
+		'ngRoute', 
+		'jcs-autoValidate', 
+		'ngFileUpload',
 		'facturacionApp.configuracion',
 		'facturacionApp.mensajes',
 		'facturacionApp.notificaciones',
 		'facturacionApp.clientes',
+		'facturacionApp.categorias',
 		'facturacionApp.automoviles',
 		'facturacionApp.dashboardCrtl',
+		'facturacionApp.categoriasCtrl',
 		'facturacionApp.clientesCrtl',
 		'facturacionApp.automovilesCrtl'
 		]);
@@ -44,15 +48,16 @@ app.controller('mainCtrl', ['$scope', 'Configuracion','Mensajes', 'Notificacione
 	});
 
 
-	// ================================================
-	//   Funciones Globales del Scope
-	// ================================================
+	// ==============================================================================
+	//   Funciones Globales del Scope para poner titulos y subtitulos a las paginas
+	// ==============================================================================
 	$scope.activar = function( menu, submenu, titulo, subtitulo ){
 
 		$scope.titulo    = titulo;
 		$scope.subtitulo = subtitulo;
 
 		$scope.mDashboard 		= "";
+		$scope.mCategorias		= "";
 		$scope.mClientes  		= "";
 		$scope.mAutomoviles  	= "";
 		$scope.mComputadores  	= "";
