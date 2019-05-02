@@ -19,46 +19,39 @@ if( isset( $_POST['file']['id'] )  ){
     $limite_kb = 65536;
 
     // Comprobamos si ha ocurrido un error.
-	if (!isset($_FILES['file']) || $_FILES["file"]["error"]["file"] > 0)
+    if (!isset($_FILES['file']))
 	{
-    	echo "Ha ocurrido un error.";
-	}
+		$id = (int) $_POST['file']['id'];
 
-    if (in_array($_FILES['file']['type']['file'], $permitidos) && $_FILES['file']['size']['file'] <= $limite_kb * 1024)
-    {
+		$sql="SELECT foto, tipo FROM automoviles WHERE id = '$id'";
 
-    	// directorio donde se guardan las imagenes
-    	$uploads_dir = 'C:/xampp/htdocs/udemy/ANGULAR JS/facturacion login/fac/img/bd/autos/'; 
-    	
+		$datosBD = Database::get_row($sql);
 
-	    // Archivo temporal
-	    $imagen_temporal = (string) $_FILES['file']['name']['file'];
-	    $tmp_nombre = (string) $_FILES['file']['tmp_name']['file'];
 	    // datos del archivo
-	    $tipo = (string) $_FILES['file']['type']['file'];
-	    $aux = (string) $_FILES['file']['name']['file'];
-	    $nombre = basename($aux);
+	    $tipo 		= (string) $datosBD['tipo'];
+	    $nombreFoto = (string) $datosBD['foto'];
 
 	    //datos del post
-	    $id = (int) $_POST['file']['id'];
-	    $marca = (string) $_POST['file']['marca'];
-	    $precio = (string) $_POST['file']['precio'] ;
-	    $descripcion = (string) $_POST['file']['descripcion'];
+	    $id 			= (int) 	$_POST['file']['id'];
+	    $marca 			= (string) 	$_POST['file']['marca'];
+	    $categoria 		= (string) 	$_POST['file']['categoria'];
+	    $color 			= (string) 	$_POST['file']['color'];
+	    $precio 		= (string) 	$_POST['file']['precio'];
+	    $descripcion 	= (string) 	$_POST['file']['descripcion'];
 
 	    // lo que estaba aqui se corto y paso al final
-	    
-	    //Con esto pasamos la imagen a un directorio dentro del servidor
-	    move_uploaded_file($tmp_nombre, "$uploads_dir/$nombre");
 
 	    // Insertamos en la base de datos.
     	$sql = "UPDATE automoviles 
 				SET
 					marca    	= '". $marca ."',
+					categoria   = '". $categoria ."',
+					color    	= '". $color ."',
 					precio   	= '". $precio ."',
-					foto    	= '". $nombre ."',
+					foto    	= '". $nombreFoto ."',
 					tipo 		= '". $tipo ."',
 					descripcion = '". $descripcion ."' 
-			WHERE id=" . $id;
+				WHERE id=" . $id;
 
 		$hecho = Database::ejecutar_idu( $sql );
 
@@ -73,13 +66,76 @@ if( isset( $_POST['file']['id'] )  ){
 
 		}
 
-        echo "El archivo imagen ha sido copiado exitosamente.";
-        
-    }else{
+	}
+	else{
 
-        echo "Formato de archivo imagen no permitido o excede el tamaño límite de $limite_kb Kbytes.";
-        
-    }
+		if ($_FILES["file"]["error"]["file"] > 0)
+		{
+    		echo "Ha ocurrido un error en la imagen.";
+		}
+
+		if (in_array($_FILES['file']['type']['file'], $permitidos) && $_FILES['file']['size']['file'] <= $limite_kb * 1024)
+	    {
+
+	    	// directorio donde se guardan las imagenes
+	    	$uploads_dir = 'C:/xampp/htdocs/udemy/ANGULAR JS/facturacion login/fac/img/bd/autos/'; 
+	    	
+
+		    // Archivo temporal
+		    $imagen_temporal 	= (string) $_FILES['file']['name']['file'];
+		    $tmp_nombre 		= (string) $_FILES['file']['tmp_name']['file'];
+		    // datos del archivo
+		    $tipo 		= (string) $_FILES['file']['type']['file'];
+		    $aux 		= (string) $_FILES['file']['name']['file'];
+		    $nombreFoto = basename($aux);
+
+		    //datos del post
+		    $id 			= (int) 	$_POST['file']['id'];
+		    $marca 			= (string) 	$_POST['file']['marca'];
+		    $categoria 		= (string) 	$_POST['file']['categoria'];
+		    $color 			= (string) 	$_POST['file']['color'];
+		    $precio 		= (string) 	$_POST['file']['precio'];
+		    $descripcion 	= (string) 	$_POST['file']['descripcion'];
+
+		    // lo que estaba aqui se corto y paso al final
+		    
+		    //Con esto pasamos la imagen a un directorio dentro del servidor
+		    move_uploaded_file($tmp_nombre, "$uploads_dir/$nombreFoto");
+
+		    // Insertamos en la base de datos.
+	    	$sql = "UPDATE automoviles 
+					SET
+						marca    	= '". $marca ."',
+						categoria   = '". $categoria ."',
+						color    	= '". $color ."',
+						precio   	= '". $precio ."',
+						foto    	= '". $nombreFoto ."',
+						tipo 		= '". $tipo ."',
+						descripcion = '". $descripcion ."' 
+					WHERE id=" . $id;
+
+			$hecho = Database::ejecutar_idu( $sql );
+
+
+			if( is_numeric($hecho) OR $hecho === true ){
+
+				$respuesta = array( 'err'=>false, 'Mensaje'=>'Registro ACTUALIZADO' );
+
+			}else{
+
+				$respuesta = array( 'err'=>true, 'Mensaje'=>$hecho );
+
+			}
+
+	        echo "El archivo imagen ha sido copiado exitosamente.";
+	        
+	    }else{
+
+	        echo "Formato de archivo imagen no permitido o excede el tamaño límite de $limite_kb Kbytes.";
+	        
+	    }
+
+	}
 
 }else{  
 
@@ -110,12 +166,15 @@ if( isset( $_POST['file']['id'] )  ){
 	    // datos del archivo
 	    $tipo = (string) $_FILES['file']['type']['file'];
 	    $aux = (string) $_FILES['file']['name']['file'];
-	    $nombre = basename($aux);
+	    $nombreFoto = basename($aux);
 
 	    //datos del post
-	    $marca = (string) $_POST['file']['marca'];
-	    $precio = (string) $_POST['file']['precio'] ;
-	    $descripcion = (string) $_POST['file']['descripcion'];	    
+	    $id 			= (int) 	$_POST['file']['id'];
+	    $marca 			= (string) 	$_POST['file']['marca'];
+	    $categoria 		= (string) 	$_POST['file']['categoria'] ;
+	    $color 			= (string) 	$_POST['file']['color'];
+	    $precio 		= (string) 	$_POST['file']['precio'];
+	    $descripcion 	= (string) 	$_POST['file']['descripcion'];    
 
 	    // lo que estaba aqui se corto y paso al final
 	    
@@ -123,10 +182,12 @@ if( isset( $_POST['file']['id'] )  ){
 	    move_uploaded_file($tmp_nombre, "$uploads_dir/$nombre");
 
 	    // Insertamos en la base de datos.
-    	$sql = "INSERT INTO automoviles( marca, precio, foto, tipo, descripcion ) 
+    	$sql = "INSERT INTO automoviles( marca, categoria, color, precio, foto, tipo, descripcion ) 
     		VALUES ('". $marca . "',
+					'". $categoria . "',
+					'". $color . "',
 					'". $precio . "',
-					'". $nombre . "',
+					'". $nombreFoto . "',
 					'". $tipo . "',
 					'". $descripcion . "')";
 

@@ -9,6 +9,8 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 		'err'     		: false, 
 		'conteo' 		: 0,
 		'automoviles' 	: [],
+		'colores' 		: [],
+		'categorias' 	: [],
 		'pag_actual'    : 1,
 		'pag_siguiente' : 1,
 		'pag_anterior'  : 1,
@@ -91,8 +93,59 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 				});
 
 			return d.promise;
+		},
+
+		// ================================================
+		//   SERVICIO PARA CARGAR COLORES
+		// ================================================
+		
+		cargarColores: function(){
+
+			var d = $q.defer();
+
+			$http({ method: "GET", url: 'json/colores.json'})
+	            .then(function (datos) {
+	            	//console.log("colores servicio autos: "+JSON.stringify(datos));
+	            	self.colores = datos.data.colores;
+	                return d.resolve();
+
+	            })
+	            .catch(function (err) {
+	                console.log("error al traer datos de colores: "+err);
+	                return d.reject();
+
+	            })	
+            ;
+
+			return d.promise;
+		},
+
+		// ================================================
+		//   SERVICIO PARA CARGAR CATEGORIAS
+		// ================================================
+		
+		cargarCategorias: function(){
+
+			var d = $q.defer();
+
+			$http({ method: "GET", url: 'php/categorias/get.listaCategorias.php'})
+	            .then(function (datos) {
+	            	//console.log("categorias servicio autos: "+JSON.stringify(datos));
+	            	self.categorias = datos.data;
+	                return d.resolve();
+
+	            })
+	            .catch(function (err) {
+	                console.log("error al traer datos de categorias: "+err);
+	                return d.reject();
+
+	            })	
+            ;
+
+			return d.promise;
 		}
 
+		// -------------------------------------------- //
 	};
 
 	return self;

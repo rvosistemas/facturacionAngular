@@ -29,6 +29,29 @@
                   ng-model="automovilSel.marca" required>
             </div>
 
+            <div class="form-group">
+                <label for="autoCategoria">Categoría</label>
+                <select type="select" class="form-control" id="autoCategoria"
+                        ng-model="automovilSel.categoria"
+                        required>
+                    <option ng-value="categoria.nombre"
+                            ng-repeat="categoria in categorias">
+                            {{ categoria.nombre }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="autoColor">Color</label>
+                <select type="select" class="form-control" id="autoColor"
+                        ng-model="automovilSel.color"
+                        required>
+                    <option ng-value="color.nombre"
+                            ng-repeat="color in colores">
+                            {{ color.nombre }}
+                    </option>
+                </select>
+            </div>
 
             <div class="form-group">
               <label>Precio</label>

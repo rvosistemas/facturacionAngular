@@ -45,6 +45,8 @@
 				<tr>
 					<th>#</th>
 					<th>Marca</th>
+					<th>Categoría</th>
+					<th>Color</th>
 					<th>Precio</th>
 					<th>Foto</th>
 					<th>Descripcion</th>
@@ -55,6 +57,8 @@
 				<tr ng-repeat="automovil in automoviles.automoviles" ng-if='automovil.activo==1'>
 					<td>{{ $index }}</td>
 					<td>{{ automovil.marca }}</td>
+					<td>{{ automovil.categoria }}</td>
+					<td>{{ automovil.color }}</td>
 					<td>{{ automovil.precio | currency }}</td>
 					<!-- <td>{{ automovil.foto }}</td> -->
 					<td> <img class="logo" src="img/bd/autos/{{ automovil.foto }} "> </td>

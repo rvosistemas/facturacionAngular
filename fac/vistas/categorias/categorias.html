@@ -14,7 +14,7 @@
 =================================-->
 
 <div class="box-header with-border">
-  <h3 class="box-title">Categorías</h3>
+  <h3 class="box-title">Categorías de los Productos</h3>
 
 	<div class="box-tools">
         <div class="input-group">
@@ -35,33 +35,55 @@
   
   <table class="table table-bordered">
 	<thead>
-		<tr>
-			Administración de Categorías
-		</tr>
+
+		<th>
+			Icono
+		</th>
+
+		<th>
+			Descripción
+		</th>
+
+		<th>
+			Acciones
+		</th>
+
 	</thead>
 	<tbody>
-		<tr ng-repeat="categoria in categorias.categorias" ng-if='categoria.activo==1'>
-			<td>
-				
-				<div class="card" style="width: 18rem;">
-				  	<!-- <img src="..." class="card-img-top" alt="..."> -->
-				  	<img class="card-img-top" src="img/bd/categorias/{{ categoria.foto }} "> 
-				  	<div class="card-body">
-				  		<h5 class="card-title">{{ categoria.nombre }}</h5>
-				    	<p class="card-text">{{ categoria.descripcion }}</p>
-				  	</div>
-				</div>
-			
-				<a ng-click="mostrarModal( categoria )" class="btn btn-warning btn-xs">Editar <i class="fa fa-edit"></i></a>
-				<a ng-click="eliminar( categoria )" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Borrar</a>
 
+		<tr ng-repeat="categoria in categorias.categorias track by $index" ng-if='categoria.activo==1'>
+			
+			<td id="grillaCategorias" align="center">
+				<img class="card-img-top" alt="..." src="img/bd/categorias/{{ categoria.foto }} ">
 			</td>
+
+			<td id="grillaCategorias" align="center">
+		  		<h3 class="card-title">{{ categoria.nombre | uppercase }}</h3>
+		    	<p class="card-text">{{ categoria.descripcion }}</p>  	
+		  	</td>
+
+		  	<td id="grillaCategorias" align="center">
+		  		<a ng-click="cargarProductos( categoria )" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Mostrar</a>
+		    	<a ng-click="mostrarModal( categoria )" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
+				<a ng-click="eliminar( categoria )" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
+	  		</td>
+			 
 		</tr>
+
 	</tbody>
 
   </table>
+	
 
+</div>
 
+<div class="container-fluid" ng-hide="bandera"> <!-- opciones -->
+	<div class="row">
+		<br>
+		<div  ng-include="listaProductosCategoria"></div>
+		<br>
+	</div>
+	<br>
 </div>
 
 <!--====  End of box body  ====-->

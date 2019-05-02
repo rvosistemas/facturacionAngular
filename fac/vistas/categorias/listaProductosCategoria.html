@@ -1,0 +1,39 @@
+<h4>lista de productos por categoria</h4>
+
+<div class="box-body">
+  
+  <table class="table table-bordered">
+	<thead>
+
+		<th>
+			Marca
+		</th>
+
+		<th>
+			Descripción
+		</th>
+
+	</thead>
+
+	<tbody>
+
+		<tr ng-repeat="listaProducto in listaProductos track by $index">
+			
+
+			<td id="grillaCategorias" align="center">
+		  		<p>{{ listaProducto.marca }}</p>
+		    	 	
+		  	</td>
+
+		  	<td id="grillaCategorias" align="center">
+		  		<p class="card-text">{{ listaProducto.descripcion }}</p> 
+		  	</td>
+			 
+		</tr>
+
+	</tbody>
+
+  </table>
+	
+
+</div>

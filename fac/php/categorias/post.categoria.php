@@ -32,17 +32,17 @@ if( isset( $_POST['file']['id'] )  ){
     	
 
 	    // Archivo temporal
-	    $imagen_temporal = (string) $_FILES['file']['name']['file'];
-	    $tmp_nombre = (string) $_FILES['file']['tmp_name']['file'];
+	    $imagen_temporal 	= (string) $_FILES['file']['name']['file'];
+	    $tmp_nombre 		= (string) $_FILES['file']['tmp_name']['file'];
 	    // datos del archivo
-	    $tipo = (string) $_FILES['file']['type']['file'];
-	    $aux = (string) $_FILES['file']['name']['file'];
-	    $nombreFoto = basename($aux);
+	    $tipo 			= (string) $_FILES['file']['type']['file'];
+	    $aux 			= (string) $_FILES['file']['name']['file'];
+	    $nombreFoto 	= basename($aux);
 
 	    //datos del post
-	    $id = (int) $_POST['file']['id'];
-	    $nombre = (string) $_POST['file']['nombre'];
-	    $descripcion = (string) $_POST['file']['descripcion'];
+	    $id 			= (int) $_POST['file']['id'];
+	    $nombre 		= (string) $_POST['file']['nombre'];
+	    $descripcion 	= (string) $_POST['file']['descripcion'];
 
 	    // lo que estaba aqui se corto y paso al final
 	    
@@ -103,16 +103,16 @@ if( isset( $_POST['file']['id'] )  ){
     	$uploads_dir = 'C:/xampp/htdocs/udemy/ANGULAR JS/facturacion login/fac/img/bd/categorias/';   	
 
 	    // Archivo temporal
-	    $imagen_temporal = (string) $_FILES['file']['name']['file'];
-	    $tmp_nombre = (string) $_FILES['file']['tmp_name']['file'];
+	    $imagen_temporal 	= (string) $_FILES['file']['name']['file'];
+	    $tmp_nombre 		= (string) $_FILES['file']['tmp_name']['file'];
 	    // datos del archivo
-	    $tipo = (string) $_FILES['file']['type']['file'];
-	    $aux = (string) $_FILES['file']['name']['file'];
+	    $tipo 		= (string) $_FILES['file']['type']['file'];
+	    $aux 		= (string) $_FILES['file']['name']['file'];
 	    $nombreFoto = basename($aux);
 
 	    //datos del post
-	    $nombre = (string) $_POST['file']['nombre'];
-	    $descripcion = (string) $_POST['file']['descripcion'];	    
+	    $nombre 		= (string) $_POST['file']['nombre'];
+	    $descripcion 	= (string) $_POST['file']['descripcion'];	    
 
 	    // lo que estaba aqui se corto y paso al final
 	    

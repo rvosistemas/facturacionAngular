@@ -1,14 +1,15 @@
 var app = angular.module('facturacionApp.categorias',[]);
 
-app.factory('Categorias', ['$http', '$q', function($http, $q){
+app.factory('Categorias', ['$http', '$q','Upload', function($http, $q, Upload){
 
 
 	var self = {
 
-		'cargando'		: false,
-		'err'     		: false, 
-		'conteo' 		: 0,
-		'automoviles' 	: [],
+		'cargando'			: false,
+		'err'     			: false, 
+		'conteo' 			: 0,
+		'categorias' 		: [],
+		'productos' 		: [],
 
 		// ================================================
 		//   SERVICIO PARA GUARDAR
@@ -81,7 +82,32 @@ app.factory('Categorias', ['$http', '$q', function($http, $q){
 				});
 
 			return d.promise;
+		},
+
+		// ========================================================
+		//   SERVICIO PARA CARGAR LISTA DE PRODUCTOS POR CATEGORIA
+		// ========================================================
+		
+		cargarProductos: function( nombreCategoria ){
+
+			console.log(nombreCategoria);
+
+			var d = $q.defer();
+
+			$http({ method:"GET", url:'php/categorias/get.listaProductos.php?var=' + nombreCategoria})
+				.then(function( data ){
+
+					console.log(data);
+					self.productos   = data.data;
+
+					return d.resolve();
+					
+				});
+
+			return d.promise;
 		}
+
+		// ================================================
 
 	};
 

@@ -16,6 +16,9 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 
 	$scope.automoviles   	= {};
 	$scope.automovilSel 	= {};
+	$scope.categorias 		= {};
+	$scope.colores 			= {};
+
 
 	// ================================================
 	//   Moverse entre el paginado
@@ -43,12 +46,39 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 
 	$scope.mostrarModal = function( automovil ){
 
-		//console.log( automovil ); muestra todo al editar
+		//muestra todo al editar
+		console.log( "editar o guardar: " ); 
+		console.log( automovil ); 
 		angular.copy( automovil, $scope.automovilSel );
+		console.log( "editar o guardar lo que hay en automovilSel: " ); 
+		console.log( $scope.automovilSel ); 
 		$("#modal_automovil").modal();
 
 	}
+
+	// ================================================
+	//   CARGAR DATOS DE LOS COLORES
+	// ================================================
+
+	Automoviles.cargarColores().then( function(){
+
+		$scope.colores = Automoviles.colores;
+		console.log("colores en controlador: "+JSON.stringify(Automoviles.colores));
+
+	});
 	
+	// ================================================
+	//   CARGAR DATOS DE LAS CATEGORIAS
+	// ================================================
+
+	Automoviles.cargarCategorias().then( function(){
+
+		$scope.categorias = Automoviles.categorias;
+
+		console.log("categorias en controlador: "+JSON.stringify($scope.categorias));
+
+	});
+
 	// ================================================
 	//   Funcion para guardar y editar
 	// ================================================

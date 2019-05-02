@@ -42,6 +42,7 @@ if( !isset( $_SESSION['user'] ) ){
 
     <!-- Estilos Personalizados -->
     <link rel="stylesheet" href="dist/css/animate.css"> 
+    <link rel="stylesheet" href="dist/css/style.css"> 
 
     <!-- Importaciones de angular -->
     <script src="angular/lib/angular.min.js"></script>

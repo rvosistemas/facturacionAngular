@@ -1,0 +1,19 @@
+/* PARA SACAR LA PALETA DE COLOR --> CTRL + SHIFT + C */
+#cardCategoriaHeader {
+    border: 1px solid #0E0E0F;
+    color: #003399;
+    background: #F6F6FA;
+    border-radius: 1px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px 8px;
+}
+
+#grillaCategorias {
+    border: 2px solid #0E0E0F;
+    background: #F6F6FA;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 10px 10px;
+}

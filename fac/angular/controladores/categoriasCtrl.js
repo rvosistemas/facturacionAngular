@@ -10,10 +10,58 @@ app.controller('categoriasCtrl', ['$scope','$routeParams','Categorias', function
 	//   Variables
 	// ================================================
 
-	$scope.activar('mCategorias','','Categorías','listado');
+	$scope.activar('mCategorias','','PRODUCTOS','Categorías');
+
+	$scope.bandera 					= true;
+	$scope.listaProductosCategoria 	= 'vistas/categorias/listaProductosCategoria.html';
 
 	$scope.categorias   	= {};
 	$scope.categoriaSel 	= {};
+	$scope.listaProductos 	= {};
+
+	// ================================================
+	//   Cargar pagina con Datos
+	// ================================================
+
+	$scope.cargar= function(){
+
+
+		swal.showLoading()
+
+		Categorias.cargarPagina().then( function(){
+
+			swal.close();
+			$scope.bandera = true;
+			$scope.categorias = Categorias;
+			console.log( JSON.stringify($scope.categorias) );
+
+		});
+
+	};
+
+	$scope.cargar();
+
+	// ================================================
+	//   Cargar pagina con Datos
+	// ================================================
+
+	$scope.cargarProductos= function( categoria ){
+
+		//console.log( categoria.nombre );
+
+		swal.showLoading()
+
+		Categorias.cargarProductos( categoria.nombre ).then( function(){
+
+			swal.close();
+			$scope.bandera = false;
+			$scope.listaProductos = Categorias.productos;
+			console.log( $scope.listaProductos );
+
+		});
+
+	};
+
 
 	// ================================================
 	//   Mostrar modal de edicion y guardado

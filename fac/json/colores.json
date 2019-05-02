@@ -1,0 +1,48 @@
+{
+    "colores": [
+        {
+            "id": 0,
+            "nombre": "blanco"
+        },
+        {
+            "id": 1,
+            "nombre": "negro"
+        },
+        {
+            "id": 2,
+            "nombre": "amarillo"
+        },
+        {
+            "id": 3,
+            "nombre": "azul"
+        },
+        {
+            "id": 4,
+            "nombre": "rojo"
+        },
+        {
+            "id": 5,
+            "nombre": "verde"
+        },
+        {
+            "id": 6,
+            "nombre": "gris"
+        },
+        {
+            "id": 7,
+            "nombre": "morado"
+        },
+        {
+            "id": 8,
+            "nombre": "cafe"
+        },
+        {
+            "id": 9,
+            "nombre": "naranja"
+        },
+        {
+            "id": 10,
+            "nombre": "rosado"
+        }
+    ]
+}
