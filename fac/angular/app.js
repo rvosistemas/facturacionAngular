@@ -5,6 +5,7 @@ var app = angular.module( 'facturacionApp',[
 		'facturacionApp.configuracion',
 		'facturacionApp.mensajes',
 		'facturacionApp.notificaciones',
+		'facturacionApp.dashboard',
 		'facturacionApp.clientes',
 		'facturacionApp.categorias',
 		'facturacionApp.automoviles',

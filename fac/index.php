@@ -29,6 +29,8 @@ if( !isset( $_SESSION['user'] ) ){
     <link rel="stylesheet" href="dist/fontawesome/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="dist/ionicons/css/ionicons.min.css">
+    <!-- Chartsjs -->
+    <script src="plugins/chartjs/Chart.js"></script>
     <!-- Sweet Alert 2 -->
     <script src="dist/sweet-alert2/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="dist/sweet-alert2/dist/sweetalert2.all.min.js">
@@ -67,6 +69,7 @@ if( !isset( $_SESSION['user'] ) ){
     <script src="angular/servicios/configuracion_service.js"></script>
     <script src="angular/servicios/mensajes_service.js"></script>
     <script src="angular/servicios/notificaciones_service.js"></script>
+    <script src="angular/servicios/dashboard_service.js"></script>
     <script src="angular/servicios/categorias_service.js"></script>
     <script src="angular/servicios/clientes_service.js"></script>
     <script src="angular/servicios/automoviles_service.js"></script>

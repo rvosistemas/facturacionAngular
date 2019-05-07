@@ -32,7 +32,7 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 
 			swal.close();
 			$scope.automoviles = Automoviles;
-			console.log($scope.automoviles);
+			//console.log($scope.automoviles);
 
 		});
 
@@ -63,7 +63,7 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 	Automoviles.cargarColores().then( function(){
 
 		$scope.colores = Automoviles.colores;
-		console.log("colores en controlador: "+JSON.stringify(Automoviles.colores));
+		//console.log("colores en controlador: "+JSON.stringify(Automoviles.colores));
 
 	});
 	
@@ -75,7 +75,7 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 
 		$scope.categorias = Automoviles.categorias;
 
-		console.log("categorias en controlador: "+JSON.stringify($scope.categorias));
+		//console.log("categorias en controlador: "+JSON.stringify($scope.categorias));
 
 	});
 
