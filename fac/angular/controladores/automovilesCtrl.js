@@ -47,11 +47,11 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 	$scope.mostrarModal = function( automovil ){
 
 		//muestra todo al editar
-		console.log( "editar o guardar: " ); 
-		console.log( automovil ); 
+		//console.log( "editar o guardar: " ); 
+		//console.log( automovil ); 
 		angular.copy( automovil, $scope.automovilSel );
-		console.log( "editar o guardar lo que hay en automovilSel: " ); 
-		console.log( $scope.automovilSel ); 
+		//console.log( "editar o guardar lo que hay en automovilSel: " ); 
+		//console.log( $scope.automovilSel ); 
 		$("#modal_automovil").modal();
 
 	}

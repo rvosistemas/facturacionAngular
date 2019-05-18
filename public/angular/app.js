@@ -46,6 +46,18 @@ app.controller('mainCtrl', ['$scope', 'LoginService', function( $scope, LoginSer
 
 	}
 
+	$scope.registrar = function(){
+
+		console.log( "Abriendo modal de registro " );  
+		window.location = 'registro.html';
+	}
+
+	$scope.volver = function(){
+
+		console.log( "Saliendo modal de registro " );  
+		window.location = 'index.php';
+	}
+
 
 
 }]);

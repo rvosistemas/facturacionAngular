@@ -17,7 +17,7 @@ if( isset( $request['id'] )  ){
 
 	$activo = 0; // activo 1 si aparecen los datos en la aplicacion con cero no.
 
-	$sql = "UPDATE categorias 
+	$sql = "UPDATE automoviles 
 				SET
 					activo = '". $activo ."'
 			WHERE id=" . $request['id'];

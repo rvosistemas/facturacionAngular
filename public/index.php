@@ -83,29 +83,33 @@
               		  ng-disabled="forma.$invalid || cargando">Ingresar</button>
             </div><!-- /.col -->
           </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" 
+                    class="btn btn-danger btn-block btn-flat"
+                    ng-click="registrar()"
+                    ng-disabled="forma.$invalid || cargando">Registrarse</button>
+            </div><!-- /.col -->
+          </div>
 
 
-		<div class="row" ng-show="invalido">
-			<div class="col-md-12">
-				<br>
-				<div class="alert alert-danger">
-					<strong>Verificar!</strong>
-					{{ mensaje }}
-				</div>
-			</div>
-		</div>
+      		<div class="row" ng-show="invalido">
+      			<div class="col-md-12">
+      				<br>
+      				<div class="alert alert-danger">
+      					<strong>Verificar!</strong>
+      					{{ mensaje }}
+      				</div>
+      			</div>
+      		</div>
 
-
-
+          
         </form>
 
-
-      </div><!-- /.login-box-body -->
-    </div><!-- /.login-box -->
+  </body> 
 
 
 
-
-
-  </body>
 </html>
+
