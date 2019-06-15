@@ -1,65 +1,109 @@
+<style>
+  #alerta{
+    color: red
+  }
+</style>
 
-  <html ng-controller="mainCtrl">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FACTURACIÓN| página de registro</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="AdminLTE.min.css">
 
-    <script src="angular/lib/angular.min.js"></script>
-    <script src="angular/app.js"></script>
-    <script src="angular/servicios/login_service.js"></script>
+<body class="hold-transition register-page">
 
-  </head>
-  <body class="hold-transition register-page">
-    <div class="register-box">
-      <div class="register-logo">
-        <a href="../../index2.html"><b>FACTURACIÓN </b>REGISTRO</a>
-      </div>
+  <div class="register-box">
+    <div class="register-logo">
+      <a href=""><b>FACTURACIÓN </b>REGISTRO</a>
+    </div>
 
-      <div class="register-box-body">
-        <p class="login-box-msg">Registrar nuevo usuario</p>
-        <form action="../../index.html" method="post">
-          <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Full name">
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </div>
-          <!--
-          <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-          </div>
-          -->
-          <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Repetir password">
-            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
-            </div><!-- /.col -->
-          </div>
-        </form>
+    <div class="register-box-body">
+      <p class="login-box-msg">Registrar nuevo usuario</p>
 
-        <a href="../public/" ng-click="volver()" class="text-center">Ya tengo una cuenta</a>
-      </div><!-- /.form-box -->
-    </div><!-- /.register-box -->
-  
-</body></html>
+      <form name="regis" ng-submit=" registrar( usuario ) "> 
+
+        <div class="form-group has-feedback">
+
+          <input type="text" 
+              class="form-control" 
+              placeholder="Nickname" 
+              ng-model="usuario.nombre" 
+              required="required"
+              minlength="4" 
+              maxlength="15">
+
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+        </div>
+
+        <div class="form-group has-feedback">
+
+          <input type="text" 
+          class="form-control" 
+          placeholder="nombre" 
+          ng-model="usuario.codigo" 
+          required="required"
+          minlength="4" 
+          maxlength="15">
+
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+        </div>
+
+        <!--
+        <div class="form-group has-feedback">
+          <input type="email" class="form-control" placeholder="Email">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        -->
+        <div class="form-group has-feedback">
+
+          <input type="password" 
+          class="form-control" 
+          placeholder="Contraseña" 
+          ng-model="usuario.contrasena" 
+          required="required" 
+          minlength="6" 
+          maxlength="15">
+
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+        </div>
+
+        <div class="form-group has-feedback">
+
+          <input type="password" 
+          class="form-control" 
+          placeholder="Repetir contraseña" 
+          ng-model="usuario.contrasena2" 
+          required="required"
+          minlength="6" 
+          maxlength="15">
+
+          <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          <br>
+
+          <div ng-show="verPass">
+            lo que tiene ver pass {{ verPass }}
+            <label  id="alerta"> No coinciden las Contraseñas</label>
+          </div>
+          
+
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-12">
+
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+
+          </div><!-- /.col -->
+        </div>
+
+      </form>
+      
+      <br>
+      <a href="../public/" ng-click="volver()" class="text-center">Ya tengo una cuenta</a>
+
+    </div><!-- /.form-box -->
+  </div><!-- /.register-box -->
+
 </body>
+
 
 
              

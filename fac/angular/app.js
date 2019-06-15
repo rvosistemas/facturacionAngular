@@ -7,6 +7,7 @@ var app = angular.module( 'facturacionApp',[
 		'facturacionApp.notificaciones',
 		'facturacionApp.dashboard',
 		'facturacionApp.clientes',
+		'facturacionApp.usuario',
 		'facturacionApp.categorias',
 		'facturacionApp.automoviles',
 		'facturacionApp.dashboardCrtl',
@@ -27,25 +28,32 @@ angular.module('jcs-autoValidate')
            
 
 
-app.controller('mainCtrl', ['$scope', 'Configuracion','Mensajes', 'Notificaciones', function($scope, Configuracion,Mensajes, Notificaciones){
+app.controller('mainCtrl', ['$scope', 'Configuracion', 'Mensajes', 'Notificaciones', 'Usuario', function($scope, Configuracion, Mensajes, Notificaciones, Usuario){
 	
 	// ================================================
 	//   variables
 	// ================================================
-	$scope.config = {};
-	$scope.mensajes = Mensajes.mensajes;
-	$scope.notificaciones = Notificaciones.notificaciones;
+	$scope.mensajes 		= Mensajes.mensajes;
+	$scope.notificaciones 	= Notificaciones.notificaciones;
+	$scope.config 			= {};
+	$scope.usuario 			= {};
 
 	$scope.titulo    = "";
 	$scope.subtitulo = "";
 
-	$scope.usuario = {
-		nombre:"Richard Vivas"
-	}
 
 	// cargar servicio de configuracion
 	Configuracion.cargar().then( function(){
 		$scope.config = Configuracion.config;
+	});
+
+	// cargar info de usuario
+	Usuario.cargarUsuario().then( function(){
+		$scope.usuario = Usuario.usuario;
+		console.log ("datos usuario JSON: "+JSON.stringify( $scope.usuario ) );
+		if( $scope.usuario.foto == ""  ){
+			$scope.usuario.foto = "default.png";
+		}
 	});
 
 

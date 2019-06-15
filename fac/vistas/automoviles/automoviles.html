@@ -54,8 +54,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="automovil in automoviles.automoviles" ng-if='automovil.activo==1'>
-					<td>{{ $index }}</td>
+				<!-- <tr ng-repeat="automovil in automoviles.automoviles" ng-if='automovil.activo==1'> -->
+					<tr ng-repeat="automovil in automoviles.automoviles">
+					<td>{{ $index+1 }}</td>
 					<td>{{ automovil.marca }}</td>
 					<td>{{ automovil.categoria }}</td>
 					<td>{{ automovil.color }}</td>

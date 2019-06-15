@@ -37,79 +37,13 @@
     <![endif]-->
   </head>
 
-  <body class="hold-transition login-page">
+  <div ng-include="'login.html'" ng-show="pagLog"> <!-- incluir pagina login -->
+    
+  </div> 
 
-    <div class="login-box">
-      <div class="login-logo">
-        
-        <a href=""><b>Facturación</b>FAC</a>
-
-      </div><!-- /.login-logo -->
-
-
-      <div class="login-box-body">
-
-        <p class="login-box-msg">Ingrese su usuario</p>
-
-        <form name="forma" ng-submit=" ingresar( datos ) ">
-
-          <div class="form-group has-feedback">
-            
-            <input type="text" 
-            	   class="form-control" 
-            	   placeholder="Usuario"
-            	   name="usuario"
-            	   required="required"
-            	   ng-model="datos.usuario">
-
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-          </div>
-
-          <div class="form-group has-feedback">
-            <input type="password" 
-                   class="form-control" 
-                   placeholder="Contraseña"
-                   name="contrasena"
-                   required="required"
-            	   ng-model="datos.contrasena">
-
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-
-          <div class="row">
-            <div class="col-xs-12">
-              <button type="submit" 
-              		  class="btn btn-primary btn-block btn-flat"
-              		  ng-disabled="forma.$invalid || cargando">Ingresar</button>
-            </div><!-- /.col -->
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-xs-12">
-              <button type="button" 
-                    class="btn btn-danger btn-block btn-flat"
-                    ng-click="registrar()"
-                    ng-disabled="forma.$invalid || cargando">Registrarse</button>
-            </div><!-- /.col -->
-          </div>
-
-
-      		<div class="row" ng-show="invalido">
-      			<div class="col-md-12">
-      				<br>
-      				<div class="alert alert-danger">
-      					<strong>Verificar!</strong>
-      					{{ mensaje }}
-      				</div>
-      			</div>
-      		</div>
-
-          
-        </form>
-
-  </body> 
-
-
+  <div ng-include="'registro.html'" ng-show="pagReg"> <!-- incluir pagin registro -->
+    
+  </div>
 
 </html>
 

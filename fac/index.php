@@ -71,6 +71,7 @@ if( !isset( $_SESSION['user'] ) ){
     <script src="angular/servicios/notificaciones_service.js"></script>
     <script src="angular/servicios/dashboard_service.js"></script>
     <script src="angular/servicios/categorias_service.js"></script>
+    <script src="angular/servicios/usuario_service.js"></script>
     <script src="angular/servicios/clientes_service.js"></script>
     <script src="angular/servicios/automoviles_service.js"></script>
 

@@ -1,15 +1,23 @@
 var app = angular.module( 'loginApp',['login.loginService']);
 
 
-app.controller('mainCtrl', ['$scope', 'LoginService', function( $scope, LoginService ){
+app.controller('mainCtrl', ['$scope', 'LoginService', '$timeout', function( $scope, LoginService, $timeout ){
 	
 
-	$scope.invalido = false;
-	$scope.cargando = false;
-	$scope.mensaje  = "";
+	$scope.invalido 	= false;
+	$scope.cargando 	= false;
+	$scope.verPass	 	= false;
+	$scope.pagLog	 	= true;
+	$scope.pagReg	 	= false;
+	$scope.mensaje  	= "";
 
-	$scope.datos = {};
+	$scope.datos 	= {};
+	$scope.usuario 	= {};
 
+	/*=============================================
+	=            FUNCION DE LOGEO           	 =
+	=============================================*/
+	
 	$scope.ingresar = function( datos ){
 
 		if( datos.usuario.length < 3 ){
@@ -34,6 +42,7 @@ app.controller('mainCtrl', ['$scope', 'LoginService', function( $scope, LoginSer
 				$scope.invalido = true;
 				$scope.cargando = false;
 				$scope.mensaje  = data.mensaje;
+
 			}else{
 
 				console.log( data.mensaje );
@@ -45,20 +54,72 @@ app.controller('mainCtrl', ['$scope', 'LoginService', function( $scope, LoginSer
 
 
 	}
+	
+	/*=============================================
+	=            FUNCION DE REGISTRO           	 =
+	=============================================*/
 
-	$scope.registrar = function(){
 
-		console.log( "Abriendo modal de registro " );  
-		window.location = 'registro.html';
+	$scope.registrar = function( usuario ){
+
+		console.log("REGISTRANDO NUEVO USUARIO");
+
+		if ( usuario.contrasena == usuario.contrasena2 ) {
+
+			$scope.verPass	= false;
+
+			LoginService.registro( usuario ).then( function( data ){
+
+				// TODO... continuar
+				if( data.err ){
+
+					console.log("ERROR al registrar");
+					$scope.mensaje  = data.mensaje;
+
+				}else{
+
+					console.log( data.mensaje );
+
+					console.log("EXITO al registrar");
+					$timeout(function() {
+    					$scope.pagLog	 	= true;
+						$scope.pagReg	 	= false;
+  					},3000);
+
+				}
+
+			});
+
+		}else{
+
+			$scope.verPass	= true;
+
+		}
 	}
+	
+	/*===================================================
+	=            abre la ventana de registro            =
+	===================================================*/
+	
+	$scope.registro = function(){
 
+		$scope.pagLog	 	= false;
+		$scope.pagReg	 	= true;
+
+	}
+	
+	/*=================================================
+	=            vuelve a ventana de login            =
+	=================================================*/
+	
 	$scope.volver = function(){
 
-		console.log( "Saliendo modal de registro " );  
-		window.location = 'index.php';
+		$scope.pagLog	 	= true;
+		$scope.pagReg	 	= false;
 	}
-
-
+	
+	/*=====  End FUNCIONES ======*/
+	
 
 }]);
 

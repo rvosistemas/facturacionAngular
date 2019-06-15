@@ -11,7 +11,7 @@ $request =  (array) $request;
 
 $respuesta = array(
 	'err' => true,
-	'mensaje' => 'Usuario/Contraseña incorrectos',
+	'mensaje' => 'Error al registrar los datos',
 );
 
 
@@ -21,46 +21,35 @@ $respuesta = array(
 // encriptar_usuario();
 
 
+if(  isset($request['codigo']) && isset($request['usuario']) && isset($request['contrasena'])  ){ // INGRESAR
 
+	$cod 	= addslashes( $request['codigo'] );
+	$user 	= addslashes( $request['usuario'] );
+	$pass	= addslashes( $request['contrasena'] );
+	$fecha	= NOW();
 
-if(  isset( $request['usuario'] ) && isset( $request['contrasena'] ) ){
-
-	$user = addslashes( $request['usuario'] );
-	$pass = addslashes( $request['contrasena'] );
-
-	$user = strtoupper($user);
+	$user 	= strtoupper($user);
 
 
 	// Verificar que el usuario exista
-	$sql = "SELECT count(*) as existe FROM usuarios where codigo = '$user' AND activo = 1 ";
+	$sql = "SELECT count(*) as existe FROM usuarios where codigo = '$cod'";
 	$existe = Database::get_valor_query( $sql, 'existe' );
 
 
-	if( $existe == 1 ){
+	if( $existe != 1 ){
 
-		$sql = "SELECT contrasena FROM usuarios WHERE codigo = '$user' ";
-		$data_pass = Database::get_valor_query( $sql, 'contrasena' );
+		$sql = "INSERT INTO usuarios (permiso,codigo,nombre,contrasena,ultimoacceso) 
+		VALUES (3,'$cod','$user','$pass','$fecha')";
+
+		Database::ejecutar_idu($sql);
 
 
-		// Encriptar usando el mismo metodo
-		//$pass = Database::uncrypt( $pass, $data_pass );
+	}else{
 
-		// Verificar que sean iguales las contraseñas
-		if( $data_pass == $pass ){
-
-			$respuesta = array(
-				'err' => false,
-				'mensaje' => 'Login válido',
-				'url' => '../fac/'
+		$respuesta = array(
+				'err' => true,
+				'mensaje' => 'Usuario ya existe',
 			);
-
-			$_SESSION['user'] = $user;
-
-			// actualizar ultimo acceso
-			$sql = "UPDATE usuarios set ultimoacceso = NOW() where codigo = '$user'";
-			Database::ejecutar_idu($sql);
-		}
-
 
 	}
 
