@@ -24,7 +24,7 @@ if( !isset( $_SESSION['user'] ) ){
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="dist/fontawesome/css/all.min.css">
     <!-- Ionicons -->
@@ -85,6 +85,7 @@ if( !isset( $_SESSION['user'] ) ){
   ===========================-->
    
    <body class="hold-transition skin-blue sidebar-mini">
+     
     <div class="wrapper">
 
       <!--=================================
@@ -112,6 +113,12 @@ if( !isset( $_SESSION['user'] ) ){
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+
+              <!-- carrito: style can be found in dropdown.less-->
+              <li class="dropdown notifications-menu"
+                  ng-include="'template/carrito.html'">
+              </li>
+              <!-- /.carrito-menu -->
 
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu"

@@ -9,6 +9,7 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 		'err'     		: false, 
 		'conteo' 		: 0,
 		'automoviles' 	: [],
+		'comprados'		: [],
 		'colores' 		: [],
 		'categorias' 	: [],
 		'pag_actual'    : 1,
@@ -38,6 +39,20 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
     			d.resolve();
   			}); 
 
+			return d.promise;
+
+		},
+
+		// ================================================
+		//   SERVICIO PARA GUARDAR
+		// ================================================
+
+		comprar: function( automovil ){
+
+			var d = $q.defer();
+			self.comprados = automovil;
+			//console.log( JSON.stringify( self.comprados ) );
+			d.resolve();
 			return d.promise;
 
 		},

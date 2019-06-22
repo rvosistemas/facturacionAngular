@@ -80,6 +80,56 @@ app.controller('automovilesCtrl', ['$scope','$routeParams','Automoviles', functi
 	});
 
 	// ================================================
+	//   Funcion para comprar carro
+	// ================================================
+
+	$scope.compraCarro = function( automovil ){
+
+		Swal.fire({
+
+            title: 'Esta seguro de Comprar el Automovil Seleccionado!',
+            text: "Igualmente puede borrar la compra antes de hacer la transferencia de dinero",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'SI, Comprar!'
+
+        }).then(( result ) => {
+        	
+            if ( result.value ) {
+
+        		Automoviles.comprar( automovil )
+	        		.then(function(){
+
+						//$("#modal_automovil").modal('hide');
+						$scope.automovilSel = {};
+						//frmAutomovil.autoValidateFormOptions.resetForm();
+
+						Swal.fire({
+
+			  				position: 'top-end',
+			  				type: 'success',
+			  				title: 'automovil agregado al carrito correctamente',
+			  				showConfirmButton: false,
+			  				timer: 1500
+
+						})
+
+					})
+					.catch(function(err){
+
+						console.log("error al cargar automovil al carrito: "+err);
+
+					})
+				;
+
+            }
+        })
+	
+	}
+
+	// ================================================
 	//   Funcion para guardar y editar
 	// ================================================
 

@@ -1,127 +1,110 @@
-var app = angular.module( 'loginApp',['login.loginService']);
+var app = angular.module( 'loginApp',[
+	'ngRoute',
+	'loginApp.loginService',
+	'loginApp.configuracion',
+	'loginApp.loginCtrl',
+	'loginApp.registroCtrl'
+]);
 
 
-app.controller('mainCtrl', ['$scope', 'LoginService', '$timeout', function( $scope, LoginService, $timeout ){
+app.controller('mainCtrl', ['$scope', '$timeout', 'Configuracion', function( $scope, $timeout, Configuracion ){
 	
+	// ================================================
+	//   variables
+	// ================================================
 
 	$scope.invalido 	= false;
 	$scope.cargando 	= false;
 	$scope.verPass	 	= false;
-	$scope.pagLog	 	= true;
-	$scope.pagReg	 	= false;
 	$scope.mensaje  	= "";
 
 	$scope.datos 	= {};
 	$scope.usuario 	= {};
+	$scope.config 	= {};
 
-	/*=============================================
-	=            FUNCION DE LOGEO           	 =
-	=============================================*/
-	
-	$scope.ingresar = function( datos ){
+	$scope.titulo    = "";
+	$scope.subtitulo = "";
 
-		if( datos.usuario.length < 3 ){
-			$scope.invalido = true;
-			$scope.mensaje  = 'Ingrese su usuario';
-			return;
-
-		}else if( datos.contrasena.length < 3 ) {
-			$scope.invalido = true;
-			$scope.mensaje  = 'Ingrese su contraseña';
-			return;
-		}
-
-		$scope.invalido = false;
-		$scope.cargando = true;
-
-		LoginService.login( datos ).then( function( data ){
-
-			// TODO... continuar
-			if( data.err ){
-
-				$scope.invalido = true;
-				$scope.cargando = false;
-				$scope.mensaje  = data.mensaje;
-
-			}else{
-
-				console.log( data.mensaje );
-				window.location = data.url;
-
-			}
-
-		});
-
-
-	}
-	
-	/*=============================================
-	=            FUNCION DE REGISTRO           	 =
-	=============================================*/
-
-
-	$scope.registrar = function( usuario ){
-
-		console.log("REGISTRANDO NUEVO USUARIO");
-
-		if ( usuario.contrasena == usuario.contrasena2 ) {
-
-			$scope.verPass	= false;
-
-			LoginService.registro( usuario ).then( function( data ){
-
-				// TODO... continuar
-				if( data.err ){
-
-					console.log("ERROR al registrar");
-					$scope.mensaje  = data.mensaje;
-
-				}else{
-
-					console.log( data.mensaje );
-
-					console.log("EXITO al registrar");
-					$timeout(function() {
-    					$scope.pagLog	 	= true;
-						$scope.pagReg	 	= false;
-  					},3000);
-
-				}
-
-			});
-
-		}else{
-
-			$scope.verPass	= true;
-
-		}
-	}
-	
-	/*===================================================
-	=            abre la ventana de registro            =
-	===================================================*/
-	
-	$scope.registro = function(){
-
-		$scope.pagLog	 	= false;
-		$scope.pagReg	 	= true;
-
-	}
-	
-	/*=================================================
-	=            vuelve a ventana de login            =
-	=================================================*/
-	
-	$scope.volver = function(){
-
-		$scope.pagLog	 	= true;
-		$scope.pagReg	 	= false;
-	}
+	// cargar servicio de configuracion
+	Configuracion.cargar().then( function(){
+		$scope.config = Configuracion.config;
+	});
 	
 	/*=====  End FUNCIONES ======*/
-	
+
+	// ==============================================================================
+	//   Funciones Globales del Scope para poner titulos y subtitulos a las paginas
+	// ==============================================================================
+	$scope.activar = function( menu, submenu, titulo, subtitulo ){
+
+		$scope.titulo    = titulo;
+		$scope.subtitulo = subtitulo;
+
+		$scope.mDashboard 		= "";
+		$scope.mCategorias		= "";
+		$scope.mClientes  		= "";
+		$scope.mAutomoviles  	= "";
+		$scope.mComputadores  	= "";
+
+		$scope[menu] = 'active';
+
+	};  
+
+	$scope.activar('mInicio','','Inicio','Productos');
 
 }]);
+
+// ================================================
+//   Directivas
+// ================================================
+
+// se modifica una directiva parecida a un filtro para que en hmtl se pueda mostrar como dinero algun numero dado
+// por ejemplo 2000000 pasa a ser $2,000,000.00 
+app.directive('format', ['$filter', function ($filter) {
+    return {
+        require: '?ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            if (!ctrl) return;
+
+            ctrl.$formatters.unshift(function (a) {
+                return $filter(attrs.format)(ctrl.$modelValue)
+            });
+
+            elem.bind('blur', function(event) {
+                var plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
+                elem.val($filter(attrs.format)(plainNumber));
+            });
+        }
+    };
+}]);
+
+
+// ================================================
+//   Filtros
+// ================================================
+app.filter( 'quitarletra', function(){
+
+	return function(palabra){
+		if( palabra ){
+			if( palabra.length > 1)
+				return palabra.substr(1);
+			else
+				return palabra;
+		}
+	}
+})
+
+.filter( 'mensajecorto', function(){
+
+	return function(mensaje){
+		if( mensaje ){
+			if( mensaje.length > 35)
+				return mensaje.substr(0,35) + "...";
+			else
+				return mensaje;
+		}
+	}
+})
 
 
 

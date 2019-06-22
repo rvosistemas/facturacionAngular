@@ -11,7 +11,7 @@ app.factory('Usuario', ['$http', '$q', 'Upload', function($http, $q, Upload){
         'usuario' 		    : [],
         
         // ================================================
-		//   SERVICIO PARA GUARDAR
+		//   SERVICIO PARA GUARDAR  
 		// ================================================
 
 		guardar: function( usuario ){
@@ -19,9 +19,32 @@ app.factory('Usuario', ['$http', '$q', 'Upload', function($http, $q, Upload){
 			var d = $q.defer();
 
 			console.log("usando guardado de usuario");
-			console.log(JSON.stringify(usuario));
 
-			Upload.upload({ url: 'php/usuario/post.usuario.php',file: usuario })
+			$http({ method:"POST", url: 'php/clientes/post.usuario.php' , data: usuario })
+				.then(function( respuesta ){
+
+					// console.log( respuesta );
+					//self.cargarPagina( self.pag_actual  );
+					d.resolve();
+
+				});
+
+			return d.promise;
+
+		},
+
+		// ================================================
+		//   SERVICIO PARA GUARDAR FOTO
+		// ================================================
+
+		guardarFoto: function( fotoUsu ){
+
+			var d = $q.defer();
+
+			console.log("usando guardado de foto de usuario");
+			//console.log(JSON.stringify(usuario));
+
+			Upload.upload({ url: 'php/usuario/post.fotoUsuario.php',file: fotoUsu })
 			.progress(function(e) {
 			})
 			.then(function(data, status, headers, config) {

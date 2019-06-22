@@ -270,9 +270,9 @@ class Database{
         
 	}
 	
-	// ================================================
-	//   Funcion que pagina cualquier TABLA
-	// ================================================
+	// =======================================================
+	//   Funcion que pagina cualquier TABLA con datos activos
+	// =======================================================
 	Public static function get_todo_paginado_activo( $tabla, $pagina = 1, $por_pagina = 20 ){
 
 		// Core de la funcion

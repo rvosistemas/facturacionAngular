@@ -5,9 +5,9 @@ var app = angular.module('facturacionApp.dashboardCrtl', []);
 // ================================================
 app.controller('dashboardCtrl', ['$scope','Dashboard', function($scope, Dashboard){
 	
-// ================================================
-//   Variables
-// ================================================
+	// ================================================
+	//   Variables
+	// ================================================
 	$scope.activar('mDashboard','','Dashboard','información');
 
 	$scope.datosAuto = {};

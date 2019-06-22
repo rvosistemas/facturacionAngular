@@ -55,7 +55,7 @@
 			</thead>
 			<tbody>
 				<!-- <tr ng-repeat="automovil in automoviles.automoviles" ng-if='automovil.activo==1'> -->
-					<tr ng-repeat="automovil in automoviles.automoviles">
+				<tr ng-repeat="automovil in automoviles.automoviles">
 					<td>{{ $index+1 }}</td>
 					<td>{{ automovil.marca }}</td>
 					<td>{{ automovil.categoria }}</td>
@@ -65,8 +65,15 @@
 					<td> <img class="logo" src="img/bd/autos/{{ automovil.foto }} "> </td>
 					<td>{{ automovil.descripcion }}</td>
 					<td>
-						<a ng-click="mostrarModal( automovil )" class="btn btn-warning btn-xs">Editar <i class="fa fa-edit"></i></a>
-						<a ng-click="eliminar( automovil )" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Borrar</a>
+						<a ng-click="compraCarro( automovil )" class="btn btn-success btn-xs" title="Comprar">
+							<i class="fa fa-money-bill"></i> 
+						</a>
+						<a ng-click="mostrarModal( automovil )" class="btn btn-warning btn-xs" title="Editar">
+							<i class="fa fa-edit"></i> 
+						</a>
+						<a ng-click="eliminar( automovil )" class="btn btn-danger btn-xs" title="Eliminar">
+							<i class="fa fa-trash"></i> 
+						</a>
 					</td>
 				</tr>
 			</tbody>

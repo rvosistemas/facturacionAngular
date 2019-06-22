@@ -1,4 +1,4 @@
-var app = angular.module('login.loginService',[]);
+var app = angular.module('loginApp.loginService',[]);
 
 
 app.factory('LoginService', ['$http','$q', function( $http, $q ){
@@ -13,14 +13,26 @@ app.factory('LoginService', ['$http','$q', function( $http, $q ){
 
 			var d = $q.defer();
 
-			$http.post('php/login/post.verificar.php', datos)
+			console.log("usando login");
+			console.log(datos);
+
+			$http({ method:"POST", url: 'php/login/post.verificar.php' , data: datos })
+				.then(function( respuesta ){
+
+					console.log( respuesta );
+					//self.cargarPagina( self.pag_actual  );
+					d.resolve( respuesta.data );
+
+				});
+
+			/*$http.post('php/login/post.verificar.php', datos)
 				 .success(function( data ){
 
 				 	console.log( data );
 				 	d.resolve( data );
 
 
-				 });
+				 });*/
 
 			return d.promise;
 
