@@ -15,7 +15,7 @@
     <div class="register-box-body">
       <p class="login-box-msg">Registrar nuevo usuario</p>
 
-      <form name="regis" ng-submit=" registrar( usuario ) "> 
+      <form name="frmRegistro" ng-submit=" registrar( usuario, frmRegistro ) "> 
 
         <div class="form-group has-feedback">
 
@@ -35,7 +35,7 @@
 
           <input type="text" 
           class="form-control" 
-          placeholder="nombre" 
+          placeholder="Nombre" 
           ng-model="usuario.codigo" 
           required="required"
           minlength="4" 
@@ -45,12 +45,18 @@
 
         </div>
 
-        <!--
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email">
+
+          <input type="email" 
+          class="form-control" 
+          placeholder="Email"
+          ng-model="usuario.email"
+          required="required">
+
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
         </div>
-        -->
+        
         <div class="form-group has-feedback">
 
           <input type="password" 
@@ -75,7 +81,7 @@
           minlength="6" 
           maxlength="15">
 
-          <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           <br>
 
           <div ng-show="verPass">
@@ -90,11 +96,23 @@
           <div class="col-xs-12">
 
             <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+            <br>
 
           </div><!-- /.col -->
         </div>
 
       </form>
+
+      <div ng-show="verMensajeGlobal" class="callout callout-warning">
+        <h4>ALERTA!</h4>
+        <p><b>{{ mensajeGlobal }} </b></p>
+        <br>
+      </div>
+
+      <div ng-show="mensajeCorreo" class="callout callout-success">
+        <h4>REGISTRADO!</h4>
+        <p><b>FALTA ACTIVAR</b>, Se envio a su correo token de activacion de cuenta.</p>
+      </div>
       
       <br>
       <a href="../public/" ng-click="volver()" class="text-center">Ya tengo una cuenta</a>

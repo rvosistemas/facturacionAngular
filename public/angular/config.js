@@ -16,6 +16,10 @@ app.config( function($routeProvider){
 			templateUrl: 'registro.html',
 			controller: 'registroCtrl'
 		})
+		.when('/activacion',{
+			templateUrl: 'activacion.html',
+			controller: 'registroCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

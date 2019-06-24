@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="box box-success">
+        <form name="frmActivar" ng-submit="activarCuenta( datosActivar, frmActivar )">
+            <div class="box-header with-border">
+                <h3 class="box-title">Activacion de Cuenta</h3>
+            </div>
+            <div class="box-body">
+
+                <input type="email" 
+                class="form-control" 
+                placeholder="Digite su email"
+                ng-model="datosActivar.email"
+                required="required">
+
+                <br>
+
+                <input type="text"
+                input class="form-control"  
+                ng-model="datosActivar.token" 
+                placeholder="Digite el token enviado a su correo">
+
+                <br>
+
+                <button type="submit" class="btn btn-primary">Activar</button>
+                <br>
+
+            </div><!-- /.box-body -->
+
+        </form>
+
+        <div ng-show="verMensajeGlobal" class="callout callout-warning">
+            <h4>ALERTA!</h4>
+            <p><b>{{ mensajeGlobal }} </b></p>
+            <br>
+        </div>
+
+        <div ng-show="mensajeActivacion" class="callout callout-success">
+            <h4>ACTIVADO!</h4>
+            <p>Ya puede LOGUEARTE para disfrutar de nuestro contenido, <br>VENDER Y COMPRAR nuestos productos.</p>
+        </div>
+
+    </div>
+</div>

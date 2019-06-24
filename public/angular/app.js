@@ -7,7 +7,7 @@ var app = angular.module( 'loginApp',[
 ]);
 
 
-app.controller('mainCtrl', ['$scope', '$timeout', 'Configuracion', function( $scope, $timeout, Configuracion ){
+app.controller('mainCtrl', ['$scope', 'Configuracion', function( $scope, Configuracion ){
 	
 	// ================================================
 	//   variables
@@ -29,8 +29,6 @@ app.controller('mainCtrl', ['$scope', '$timeout', 'Configuracion', function( $sc
 	Configuracion.cargar().then( function(){
 		$scope.config = Configuracion.config;
 	});
-	
-	/*=====  End FUNCIONES ======*/
 
 	// ==============================================================================
 	//   Funciones Globales del Scope para poner titulos y subtitulos a las paginas
@@ -49,6 +47,8 @@ app.controller('mainCtrl', ['$scope', '$timeout', 'Configuracion', function( $sc
 		$scope[menu] = 'active';
 
 	};  
+
+	/*=====  End FUNCIONES ======*/
 
 	$scope.activar('mInicio','','Inicio','Productos');
 

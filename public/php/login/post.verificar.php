@@ -11,7 +11,7 @@ $request =  (array) $request;
 
 $respuesta = array(
 	'err' => true,
-	'mensaje' => 'Usuario/Contraseña incorrectos',
+	'mensaje' => 'Correo/Contraseña incorrectos',
 );
 
 
@@ -23,22 +23,21 @@ $respuesta = array(
 
 
 
-if(  isset( $request['usuario'] ) && isset( $request['contrasena'] ) ){
+if(  isset( $request['correo'] ) && isset( $request['contrasena'] ) ){
 
-	$user = addslashes( $request['usuario'] );
+	$correo = addslashes( $request['correo'] );
 	$pass = addslashes( $request['contrasena'] );
 
-	$user = strtoupper($user);
-
+	$correo	= strtolower($correo);
 
 	// Verificar que el usuario exista
-	$sql = "SELECT count(*) as existe FROM usuarios where codigo = '$user' AND activo = 1 ";
+	$sql = "SELECT count(*) AS existe FROM usuarios WHERE correo = '$correo' AND activo = 1 ";
 	$existe = Database::get_valor_query( $sql, 'existe' );
 
 
 	if( $existe == 1 ){
 
-		$sql = "SELECT contrasena FROM usuarios WHERE codigo = '$user' ";
+		$sql = "SELECT contrasena FROM usuarios WHERE correo = '$correo' ";
 		$data_pass = Database::get_valor_query( $sql, 'contrasena' );
 
 
@@ -62,6 +61,11 @@ if(  isset( $request['usuario'] ) && isset( $request['contrasena'] ) ){
 		}
 
 
+	}else{
+		$respuesta = array(
+			'err' => true,
+			'mensaje' => 'Usuario NO existe, o no ha activado su cuenta (verificar su email)',
+		);
 	}
 
 }

@@ -2,7 +2,6 @@
 session_start();
 require_once("../clases/class.Database.php");
 
-
 $postdata = file_get_contents("php://input");
 
 $request = json_decode($postdata);
@@ -14,6 +13,7 @@ $respuesta = array(
 	'mensaje' => 'Error al registrar los datos',
 );
 
+//var_dump($request);  // si deja activo se envia junto con la respuesta
 
 // ================================================
 //   Encriptar la contraseña maestra (UNICA VEZ)
@@ -21,35 +21,45 @@ $respuesta = array(
 // encriptar_usuario();
 
 
-if(  isset($request['codigo']) && isset($request['usuario']) && isset($request['contrasena'])  ){ // INGRESAR
+if(  isset($request['codigo']) && isset($request['nombre']) && isset($request['email']) && isset($request['contrasena'])  ){ // INGRESAR
 
 	$cod 	= addslashes( $request['codigo'] );
-	$user 	= addslashes( $request['usuario'] );
+	$correo = addslashes( $request['email'] );
+    $nombre	= addslashes( $request['nombre'] );
 	$pass	= addslashes( $request['contrasena'] );
-	$fecha	= NOW();
+	$fecha	= date("Y-m-d H:i:s");
 
-	$user 	= strtoupper($user);
+	$nombre	= strtoupper($nombre);
+	$correo	= strtolower($correo);
 
+	$token 	= random_int(10000, 99999);
+	//var_dump($token);
 
-	// Verificar que el usuario exista
-	$sql = "SELECT count(*) as existe FROM usuarios where codigo = '$cod'";
+	// Verificar que el usuario exista por medio del correo
+	$sql 	= "SELECT count(*) as existe FROM usuarios where correo = '$correo'";
 	$existe = Database::get_valor_query( $sql, 'existe' );
 
 
 	if( $existe != 1 ){
 
-		$sql = "INSERT INTO usuarios (permiso,codigo,nombre,contrasena,ultimoacceso) 
-		VALUES (3,'$cod','$user','$pass','$fecha')";
+		$sql = "INSERT INTO usuarios (permiso,codigo,nombre,correo,contrasena,token,ultimoacceso) 
+		VALUES (3,'$cod','$nombre','$correo','$pass','$token','$fecha')";
 
 		Database::ejecutar_idu($sql);
 
+		$respuesta = array(
+			'err' => false,
+			'token' => $token,
+			'mensaje' => 'Registro Exitoso',
+			
+		);
 
 	}else{
 
 		$respuesta = array(
-				'err' => true,
-				'mensaje' => 'Usuario ya existe',
-			);
+			'err' => true,
+			'mensaje' => 'Usuario ya existe',
+		);
 
 	}
 

@@ -18,12 +18,13 @@ app.controller('loginCtrl', ['$scope', 'LoginService', function($scope,  LoginSe
 	
 	$scope.ingresar = function( datos ){
 
-		if( datos.usuario.length < 3 ){
+		/*if( datos.correo.length < 3 ){
 			$scope.invalido = true;
 			$scope.mensaje  = 'Ingrese su usuario';
 			return;
 
-		}else if( datos.contrasena.length < 3 ) {
+		}else */
+		if( datos.contrasena.length < 3 ) {
 			$scope.invalido = true;
 			$scope.mensaje  = 'Ingrese su contraseña';
 			return;
@@ -35,21 +36,19 @@ app.controller('loginCtrl', ['$scope', 'LoginService', function($scope,  LoginSe
         LoginService.login( datos )
             .then( function( data ){
 
-            console.log( data );
+				console.log( data );
 
-			// TODO... continuar
-			if( data.err ){
+				if( data.err ){
 
-				$scope.invalido = true;
-				$scope.cargando = false;
-				$scope.mensaje  = data.mensaje;
+					$scope.invalido = true;
+					$scope.cargando = false;
+					$scope.mensaje  = data.mensaje;
 
-			}else{
+				}else{
 
-				console.log( data.mensaje );
-				window.location = data.url;
+					window.location = data.url;
 
-			}
+				}
 
             })
         ;

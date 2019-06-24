@@ -28,10 +28,9 @@ class Database{
 	// ================================================
 	public static function getInstancia(){
 
-		if(!isset(self::$_instancia)){
+		if(!isset( self::$_instancia )){
 			self::$_instancia = new self;
 		}
-
 
 		return self::$_instancia;
 	}
@@ -241,8 +240,6 @@ class Database{
 		}else{
 			return $resultado;
 		}
-
-		
 
         return $resultado;
 	}
