@@ -6,9 +6,9 @@ include_once("../clases/class.Database.php");
 
 session_start();
 
-$user = $_SESSION['user'];
+$correo = $_SESSION['email'];
 
-$sql="SELECT id, permiso, codigo, nombre, foto FROM usuarios WHERE codigo = '$user' ";
+$sql="SELECT id, permiso, codigo, nombre, foto FROM usuarios WHERE correo = '$correo' ";
 
 $respuesta = Database::get_json_row($sql);
 

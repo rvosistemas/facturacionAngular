@@ -56,7 +56,7 @@ app.controller('mainCtrl', ['$scope', 'Configuracion', 'Mensajes', 'Notificacion
 		Usuario.cargarUsuario().then( function(){
 			$scope.usuario = Usuario.usuario;
 			console.log ("datos usuario JSON: "+JSON.stringify( $scope.usuario ) );
-			if( $scope.usuario.foto == ""  ){
+			if( $scope.usuario.foto == "" || $scope.usuario.foto == null ){
 				$scope.usuario.foto = "default.png";
 			}
 		});

@@ -7,7 +7,7 @@ include_once("../clases/class.Database.php");
 
 session_start();
 
-$user = $_SESSION['user'];
+$correo = $_SESSION['email'];
 
 // Verificamos si el tipo de archivo es un tipo de imagen permitido.
 // y que el tamaño del archivo no exceda los 64MB
@@ -45,7 +45,7 @@ if (in_array($_FILES['file']['type']['file'], $permitidos) && $_FILES['file']['s
         SET
             foto = '". $nombreFoto ."',
             tipo = '". $tipo ."' 
-        WHERE codigo = '$user'";
+        WHERE correo = '$correo'";
 
     $hecho = Database::ejecutar_idu( $sql );
 

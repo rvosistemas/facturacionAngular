@@ -50,13 +50,13 @@ if(  isset( $request['correo'] ) && isset( $request['contrasena'] ) ){
 			$respuesta = array(
 				'err' => false,
 				'mensaje' => 'Login válido',
-				'url' => '../fac/'
+				'url' => '../fac/',
 			);
 
-			$_SESSION['user'] = $user;
+			$_SESSION['email'] = $correo; // para manejar la sesion
 
 			// actualizar ultimo acceso
-			$sql = "UPDATE usuarios set ultimoacceso = NOW() where codigo = '$user'";
+			$sql = "UPDATE usuarios set ultimoacceso = NOW() where correo = '$correo'";
 			Database::ejecutar_idu($sql);
 		}
 

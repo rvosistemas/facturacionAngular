@@ -9,7 +9,7 @@ $request = (array) $request;
 
 session_start();
 
-$user = $_SESSION['user'];
+$correo = $_SESSION['email'];
 
 if( isset( $request['id'] )  ){
 	
