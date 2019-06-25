@@ -23,7 +23,7 @@
 		    <div class="box-header with-border">
 		      <h3 class="box-title">Clientes</h3>
 		
-				<div class="box-tools">
+				<div class="box-tools" ng-show="permiso">
 		            <div class="input-group">
 		              <a class="btn btn-primary"
 		              	ng-click="mostrarModal({})"><i class="fa fa-plus"></i> Agregar cliente</a>
@@ -47,7 +47,7 @@
 						<th>Correo</th>
 						<th>Teléfono 1</th>
 						<th>Teléfono 2</th>
-						<th>Acciones</th>
+						<th ng-show="permiso">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,9 +57,13 @@
 						<td>{{ cliente.correo }}</td>
 						<td>{{ cliente.telefono1 }}</td>
 						<td>{{ cliente.telefono2 }}</td>
-						<td>
-							<a ng-click="mostrarModal( cliente )" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
-							<a ng-click="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Borrar</a>
+						<td  ng-show="permiso">
+							<a ng-click="mostrarModal( cliente )" class="btn btn-warning btn-xs">
+								<i class="fa fa-edit"></i> Editar
+							</a>
+							<a ng-click="" class="btn btn-danger btn-xs">
+								<i class="fa fa-trash"></i> Borrar
+							</a>
 						</td>
 					</tr>
 				</tbody>

@@ -4,7 +4,7 @@ var app = angular.module('facturacionApp.clientesCrtl', []);
 //   Controlador de clientes
 // ================================================
 
-app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($scope, $routeParams, Clientes){
+app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', 'Usuario', function($scope, $routeParams, Clientes, Usuario){
 
 	// ================================================
 	//   Variables
@@ -14,8 +14,24 @@ app.controller('clientesCtrl', ['$scope','$routeParams', 'Clientes', function($s
 
 
 	$scope.activar('mClientes','','Clientes','listado');
-	$scope.clientes   = {};
-	$scope.clienteSel = {};
+	$scope.clientes   	= {};
+	$scope.usuario 		= {};
+	$scope.clienteSel 	= {};
+
+	$scope.permiso 		= true;
+
+	// CARGA LA INFORMACION DEL USUARIO
+	$scope.datosUsu = function(){
+		Usuario.cargarUsuario().then( function(){
+			$scope.usuario = Usuario.usuario;
+			if( $scope.usuario.permiso != 1 ){
+				$scope.permiso 	= false;
+			}
+			//console.log ("datos usuario JSON: "+JSON.stringify( $scope.usuario ) );
+		});
+	}
+
+	$scope.datosUsu();
 
 	// ================================================
 	//   Moverse entre el paginado

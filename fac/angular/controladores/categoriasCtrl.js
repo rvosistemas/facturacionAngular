@@ -4,7 +4,7 @@ var app = angular.module('facturacionApp.categoriasCtrl', []);
 //   Controlador de categorias
 // ================================================
 
-app.controller('categoriasCtrl', ['$scope','$routeParams','Categorias', function($scope, $routeParams, Categorias){
+app.controller('categoriasCtrl', ['$scope','$routeParams','Categorias', 'Usuario', function($scope, $routeParams, Categorias, Usuario){
 
 	// ================================================
 	//   Variables
@@ -16,8 +16,24 @@ app.controller('categoriasCtrl', ['$scope','$routeParams','Categorias', function
 	$scope.listaProductosCategoria 	= 'vistas/categorias/listaProductosCategoria.html';
 
 	$scope.categorias   	= {};
+	$scope.usuario 			= {};
 	$scope.categoriaSel 	= {};
 	$scope.listaProductos 	= {};
+
+	$scope.permiso 			= true;
+
+	// CARGA LA INFORMACION DEL USUARIO
+	$scope.datosUsu = function(){
+		Usuario.cargarUsuario().then( function(){
+			$scope.usuario = Usuario.usuario;
+			if( $scope.usuario.permiso != 1 ){
+				$scope.permiso 	= false;
+			}
+			//console.log ("datos usuario JSON: "+JSON.stringify( $scope.usuario ) );
+		});
+	}
+
+	$scope.datosUsu();
 
 	// ================================================
 	//   Cargar pagina con Datos

@@ -8,7 +8,7 @@ session_start();
 
 $correo = $_SESSION['email'];
 
-$sql="SELECT id, permiso, codigo, nombre, foto FROM usuarios WHERE correo = '$correo' ";
+$sql="SELECT * FROM usuarios WHERE correo = '$correo' ";
 
 $respuesta = Database::get_json_row($sql);
 
