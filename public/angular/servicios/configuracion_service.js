@@ -17,7 +17,6 @@ app.factory('Configuracion', ['$http', '$q', function($http, $q){
 					self.config = data.data;
 					d.resolve();
 
-
 				},
 				function (error){
 

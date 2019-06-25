@@ -54,6 +54,7 @@
     <script src="angular/config.js"></script>
     <script src="angular/controladores/loginCtrl.js"></script>
     <script src="angular/controladores/registroCtrl.js"></script>
+    <script src="angular/controladores/productosCtrl.js"></script>
  
 
     <!--==========================
@@ -61,6 +62,8 @@
     ===========================-->
     <script src="angular/servicios/login_service.js"></script>
     <script src="angular/servicios/configuracion_service.js"></script>
+    <script src="angular/servicios/categorias_service.js"></script>
+    <script src="angular/servicios/productos_service.js"></script>
 
   </head>
 

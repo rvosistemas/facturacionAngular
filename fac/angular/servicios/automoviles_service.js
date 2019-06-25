@@ -89,7 +89,7 @@ app.factory('Automoviles', ['$http', '$q', 'Upload', function($http, $q, Upload)
 
 			var d = $q.defer();
 
-			$http({ method:"GET", url:'php/automoviles/get.automoviles.php?pag=' + pag })
+			$http({ method:"GET", url:'php/automoviles/get.listaAutomoviles.php?pag=' + pag })
 				.then(function( data ){
 
 					//console.log(data);

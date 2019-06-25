@@ -1,71 +1,80 @@
-<style>
-    .jumbotron {
-        background-image: url("img/jumbotron_bg.png");
-        background-size: cover;
-    }    
-</style>
+<head>
+    <style>
+        .jumbotron {
+            background-image: url("img/jumbotron_bg.png");
+            background-size: cover;
+        }  
+        #dynamiccontentcarousel {
+            background-color: rgba(236, 91, 8, 0.808);
+        }
+    </style>
 
-<div class="container-fluid">
-    <div class="jumbotron">
-            <h1><b>OFERTAS INCREIBLES</b></h1>
-            <p><b>ENTRA A NUESTRO SITIO Y APROVECHA LAS MEJORES OFERTAS</b></p>
-            <p><a class="btn btn-primary btn-lg" href="#!/login" role="button">LOGUEATE</a></p>
-    </div>
+    <script type="text/javascript">
+        function salto(){
+            document.writeln("lo que tiene index");
+            if($index % 3 == 0 ){
+                console.log("operacion: "+ $index % 3 == 0 );
+                return '<br>'
+            }
+        }    
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron">
+                <h1><b>OFERTAS INCREIBLES</b></h1>
+                <p><b>ENTRA A NUESTRO SITIO Y APROVECHA LAS MEJORES OFERTAS</b></p>
+                <p><a class="btn btn-primary btn-lg" href="#!/login" role="button">LOGUEATE</a></p>
+        </div>
+        
+        <div class="box box-solid">
     
-    <div class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">CATEGORIAS</h3>
-        </div><!-- /.box-header -->
-        <div class="box-body">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="item active">
-                <img src="../fac/img/bd/categorias/descarga.jpg" alt="CATEGORIAS 1">
-                <div class="carousel-caption">
-                    CATEGORIAS
-                </div>
-                </div>
-                <div class="item">
-                    <img src="../fac/img/bd/categorias/admin.jpg" alt="CATEGORIAS 2">
-                <div class="carousel-caption">
-                    CATEGORIAS
-                </div>
-                </div>
-                <div class="item">
-                    <img src="../fac/img/bd/categorias/sin_categoria.png" alt="CATEGORIAS 3">
-                <div class="carousel-caption">
-                    CATEGORIAS
-                </div>
-                </div>
-            </div>
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                <span class="fa fa-angle-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                <span class="fa fa-angle-right"></span>
-            </a>
-            </div>
-        </div><!-- /.box-body -->
-    </div>
+            <div class="box-header with-border">
+                <h3 class="box-title">CATEGORIAS</h3>
+            </div><!-- /.box-header -->
     
-    <div class="row">
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-            <img src="..." alt="...">
-            <div class="caption">
-                <h3>Producto</h3>
-                <p>Producto en venta</p>
-                <p>
-                    <a href="#" class="btn btn-primary" role="button">Detalles</a> 
-                </p>
-            </div>
+            <div class="box-body">
+                        
+                <div id="dynamiccontentcarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+            
+                    <ol class="carousel-indicators">
+                        <li data-target="#dynamiccontentcarousel" data-ng-repeat="categoria in categorias" data-ng-class="{active : $first}" data-slide-to="{{$index}}"></li>
+                    </ol>
+            
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item" data-ng-repeat="categoria in categorias" data-ng-class="{active : $first}">
+                            <img data-ng-src="../fac/img/bd/categorias/{{categoria.foto}}" alt=" carousel {{$index}}" />
+                            <div class="carousel-caption">
+                                {{ categoria.nombre }}
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+    
             </div>
         </div>
-    </div>
-</div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6" data-ng-repeat="producto in productos">
+                    <div class="thumbnail" >
+                        <img src="../fac/img/bd/autos/{{producto.foto}}" alt=" carousel {{$index}}">
+                        <div class="caption">
+                            <!-- <p align="center"><b>{{ producto.marca }}</b></p> 
+                            <p align="center">{{ producto.precio | currency }}</p> -->
+                            <p align="center">
+                                <a href="" ng-click="mostrarDetalles( producto )" class="btn btn-primary" role="button">Detalles</a> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div> 
+</body>
+
+<div ng-include="'modalDetalles.html'"></div>
+
 

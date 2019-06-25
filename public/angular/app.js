@@ -2,12 +2,15 @@ var app = angular.module( 'loginApp',[
 	'ngRoute',
 	'loginApp.loginService',
 	'loginApp.configuracion',
+	'loginApp.categoriasService',
+	'loginApp.productosService',
 	'loginApp.loginCtrl',
+	'loginApp.productosCtrl',
 	'loginApp.registroCtrl'
 ]);
 
 
-app.controller('mainCtrl', ['$scope', 'Configuracion', function( $scope, Configuracion ){
+app.controller('mainCtrl', ['$scope', 'Configuracion', 'categoriasService', 'productosService', function( $scope, Configuracion, categoriasService, productosService ){
 	
 	// ================================================
 	//   variables
@@ -18,12 +21,38 @@ app.controller('mainCtrl', ['$scope', 'Configuracion', function( $scope, Configu
 	$scope.verPass	 	= false;
 	$scope.mensaje  	= "";
 
-	$scope.datos 	= {};
-	$scope.usuario 	= {};
-	$scope.config 	= {};
+	$scope.datos 		= {};
+	$scope.usuario 		= {};
+	$scope.config 		= {};
+	$scope.categorias 	= {};
+	$scope.productos 	= {};
+	$scope.productoSel 	= {};
 
 	$scope.titulo    = "";
 	$scope.subtitulo = "";
+
+	// ====================================
+	// = Funcion mostral modal detalles   =
+	// ====================================
+
+	$scope.mostrarDetalles = function( producto ){
+
+		angular.copy( producto, $scope.productoSel );
+		$("#modal_detalles").modal();
+
+	};  
+
+	// cargar categorias
+	categoriasService.cargar().then( function(){
+		$scope.categorias = categoriasService.categorias;
+		//console.log( "categorias en app: "+JSON.stringify($scope.categorias) );
+	});
+
+	// cargar productos
+	productosService.cargarAutos().then( function(){
+		$scope.productos = productosService.automoviles;
+		//console.log( "productos en app: "+JSON.stringify($scope.productos) );
+	});
 
 	// cargar servicio de configuracion
 	Configuracion.cargar().then( function(){
@@ -38,8 +67,8 @@ app.controller('mainCtrl', ['$scope', 'Configuracion', function( $scope, Configu
 		$scope.titulo    = titulo;
 		$scope.subtitulo = subtitulo;
 
-		$scope.mDashboard 		= "";
-		$scope.mCategorias		= "";
+		$scope.mInicio		= "";
+		//$scope.mCategorias		= "";
 		$scope.mClientes  		= "";
 		$scope.mAutomoviles  	= "";
 		$scope.mComputadores  	= "";
